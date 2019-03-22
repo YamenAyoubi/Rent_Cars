@@ -20,4 +20,5 @@ public class ContactsInfo {
 	private Client client;
 	@OneToOne(cascade=CascadeType.ALL)
 	private SalesPerson salesPerson;
+	
 }

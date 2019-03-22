@@ -21,5 +21,7 @@ public class SalesPerson {
 	private Cars cars;
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactsInfo contactsInfo;
-
+	
+	
 }
+

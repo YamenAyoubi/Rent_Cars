@@ -23,4 +23,6 @@ public class Branches {
 	
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private List<Cars> branchCars=new ArrayList<>();
+	
+	
 }

@@ -21,4 +21,5 @@ public class Client {
 	private ContactsInfo contactsInfo;
 	
 	
+	
 }

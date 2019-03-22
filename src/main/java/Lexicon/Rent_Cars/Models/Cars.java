@@ -29,4 +29,6 @@ public class Cars {
 	private Client client;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private SalesPerson salesPerson;
+	
+	
 }
