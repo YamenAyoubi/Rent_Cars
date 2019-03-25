@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+
+
 @Entity
 public class Cars {
 
@@ -21,7 +23,7 @@ public class Cars {
 	private String Size;
 	private boolean ECO;
 	private boolean Rented;
-	private int DailyRent;
+
 
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private Branches branch;
@@ -29,6 +31,8 @@ public class Cars {
 	private Client client;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private SalesPerson salesPerson;
-	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	private RentalPrices rentalprices;
+
 	
 }
