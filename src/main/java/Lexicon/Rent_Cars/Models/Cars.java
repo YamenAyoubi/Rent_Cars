@@ -18,11 +18,10 @@ public class Cars {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
 	private String Brand;
-	private String Type;
+	private String Color;
 	private String Model;
 	private String Size;
-	private boolean ECO;
-	private boolean Rented;
+
 
 
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
@@ -33,6 +32,7 @@ public class Cars {
 	private SalesPerson salesPerson;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private RentalPrices rentalprices;
-
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	private MoreDescriptions more_Descriptions;
 	
 }
