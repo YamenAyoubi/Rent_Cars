@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import Lexicon.Rent_Cars.Agreement;
+
 
 
 @Entity
@@ -17,10 +19,7 @@ public class Cars {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
-	private String Brand;
-	private String Color;
-	private String Model;
-	private String Size;
+	private String Refrance;
 
 
 
@@ -34,5 +33,8 @@ public class Cars {
 	private RentalPrices rentalprices;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private MoreDescriptions more_Descriptions;
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	private Agreement agreement;
+	
 	
 }

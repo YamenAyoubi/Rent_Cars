@@ -13,6 +13,11 @@ public class MoreDescriptions {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
+
+	private String Brand;
+	private String Color;
+	private String Model;
+	private String Size;
 	private boolean Fuel;
 	private boolean Auto;
 	private boolean Rented;

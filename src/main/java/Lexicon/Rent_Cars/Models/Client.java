@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import Lexicon.Rent_Cars.Agreement;
 @Entity
 public class Client {
 
@@ -15,10 +17,13 @@ public class Client {
 	private int ID;
 	private String FirstName;
 	private String SecondName;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private Cars cars;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private ContactsInfo contactsInfo;
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	private Agreement agreement;
 	
 	
 	
