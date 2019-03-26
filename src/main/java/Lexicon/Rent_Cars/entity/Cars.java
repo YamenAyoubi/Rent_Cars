@@ -1,4 +1,4 @@
-package Lexicon.Rent_Cars.Models;
+package Lexicon.Rent_Cars.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -6,10 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import Lexicon.Rent_Cars.Agreement;
 
 
 
@@ -39,12 +36,10 @@ public class Cars {
 	
 
 	
-	public Cars(String refrance, Branches branch, RentalPrices rentalprices, MoreDescriptions more_Descriptions) {
+	public Cars(String refrance) {
 		super();
 		Refrance = refrance;
-		this.branch = branch;
-		this.rentalprices = rentalprices;
-		this.more_Descriptions = more_Descriptions;
+
 	}
 
 	public Cars() {}

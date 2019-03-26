@@ -1,4 +1,4 @@
-package Lexicon.Rent_Cars.Models;
+package Lexicon.Rent_Cars.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

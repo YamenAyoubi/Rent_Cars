@@ -1,17 +1,11 @@
-package Lexicon.Rent_Cars;
+package Lexicon.Rent_Cars.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import Lexicon.Rent_Cars.Models.Branches;
-import Lexicon.Rent_Cars.Models.Cars;
-import Lexicon.Rent_Cars.Models.Client;
-import Lexicon.Rent_Cars.Models.SalesPerson;
 
 @Entity
 public class Agreement {

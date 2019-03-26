@@ -1,4 +1,4 @@
-package Lexicon.Rent_Cars.Models;
+package Lexicon.Rent_Cars.entity;
 
 import java.util.ArrayList;
 import java.util.List;
