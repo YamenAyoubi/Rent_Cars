@@ -74,7 +74,8 @@ public class TestCommandLine implements CommandLineRunner {
 		MoreDescriptions MorInf = more_des_repo.save(new MoreDescriptions("Volovo", "balck", "2017"," 6 Seats", true, true, false, "Small Crash at back"));
 		MoreDescriptions MorInf1 = more_des_repo.save(new MoreDescriptions("Opel", "Silver", "2016"," 5 Seats", true, true, false, "Small Crash at front"));		
 		Agreement Agre1 = agreement_repo.save(new Agreement(30, true, true, Volvo, Vaxjo, Erik, Yam));
-		Agreement Agre2 = agreement_repo.save(new Agreement(20, true, true, Opel, Vaxjo, Erik,Yam)); 	
+		Agreement Agre2 = agreement_repo.save(new Agreement(20, true, true, Opel, Vaxjo, Erik,Yam)); 
+		Agreement Agre3 = agreement_repo.save(new Agreement(65, false, false, Opel, Vaxjo, Erik,Yam)); 	
 		
 		Opel.setBranch(Vaxjo);
 		Volvo.setBranch(Vaxjo);
@@ -92,8 +93,11 @@ public class TestCommandLine implements CommandLineRunner {
 		
 
 		System.out.println(Agre1);
+		System.out.println(Agre2);
+		System.out.println(Agre3);
 		System.out.println(Agre2.getToltalCost());
-
+		System.out.println(Agre1.getToltalCost());
+		System.out.println(Agre3.getToltalCost());
 	
 		
 	}

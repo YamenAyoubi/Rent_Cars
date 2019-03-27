@@ -40,25 +40,46 @@ public class Agreement {
 		this.branch_Car = branch_Car;
 		this.client_Details = client_Details;
 		this.sales_Person = sales_Person;
-		
+
 	}
 
-	public Agreement() {}
-	
+	public Agreement() {
+	}
+
 	private void countCost() {
-		
-		if (Navigation = true) {
+
+		if (Navigation == true) {
 			Navigation_Cost = 30 * Rent_Period;
+			
 		} else {
 			Navigation_Cost = 0;
 		}
-		
-		if (Baby_Chair = true) {
+
+		if (Baby_Chair == true) {
 			Baby_Chair_Cost = 20 * Rent_Period;
 		} else {
 			Baby_Chair_Cost = 0;
 		}
-		Total_Cost =selected_Car.getRentalprices().getDailyRent() * Rent_Period + Baby_Chair_Cost + Navigation_Cost;
+		Total_Cost = selected_Car.getRentalprices().getDailyRent() * Rent_Period + Baby_Chair_Cost + Navigation_Cost;
+	}
+
+	private void Discount() {
+
+		if (Rent_Period <= 30) {
+
+			Total_Cost = Total_Cost * 100 / 100;
+
+		} else if (Rent_Period > 30) {
+			Total_Cost = Total_Cost * 90 / 100;
+			System.out.println("You Got Discount 10 % ");
+		} else if (Rent_Period > 60) {
+
+			Total_Cost = Total_Cost * 80 / 100;
+			System.out.println("You Got Discount 20 % ");
+		} else {
+			Total_Cost = Total_Cost * 70 / 100;
+			System.out.println("You Got Discount 30 % ");
+		}
 	}
 
 	public void setSelected_Car(Cars selected_Car) {
@@ -198,6 +219,7 @@ public class Agreement {
 	@Override
 	public String toString() {
 		countCost();
+		Discount();
 		return "Agreement [Agremment_ID=" + Agreement_ID + ", Rent_Period=" + Rent_Period + ", Navigation=" + Navigation
 				+ ", Baby_Chair=" + Baby_Chair + ", ToltalCost=" + Total_Cost + ", selected_Car=" + selected_Car
 				+ ", branch_Car=" + branch_Car + ", client_Details=" + client_Details + ", sales_Person=" + sales_Person
