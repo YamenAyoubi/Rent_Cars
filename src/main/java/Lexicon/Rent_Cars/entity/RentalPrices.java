@@ -26,6 +26,7 @@ public class RentalPrices {
 		DailyRent = dailyRent;
 	}
 	public RentalPrices() {}
+	
 	public int getDailyRent() {
 		return DailyRent;
 	}

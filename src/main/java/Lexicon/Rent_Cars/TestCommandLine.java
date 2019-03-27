@@ -92,7 +92,7 @@ public class TestCommandLine implements CommandLineRunner {
 		
 
 		System.out.println(Agre1);
-		System.out.println(Agre2);
+		System.out.println(Agre2.getToltalCost());
 
 	
 		
