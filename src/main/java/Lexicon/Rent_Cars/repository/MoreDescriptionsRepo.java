@@ -2,6 +2,8 @@ package Lexicon.Rent_Cars.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface MoreDescriptionsRepo extends CrudRepository<MoreDescriptionsRepo, Integer> {
+import Lexicon.Rent_Cars.entity.MoreDescriptions;
+
+public interface MoreDescriptionsRepo extends CrudRepository<MoreDescriptions, Integer> {
 
 }
