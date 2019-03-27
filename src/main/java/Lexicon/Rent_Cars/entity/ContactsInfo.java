@@ -113,10 +113,7 @@ public class ContactsInfo {
 
 	@Override
 	public String toString() {
-		return "ContactsInfo [ID=" + ID + ", Address=" + Address + ", ContactNumber=" + ContactNumber + ", client="
-				+ client + ", salesPerson=" + salesPerson + "]";
+		return "ContactsInfo [Address=" + Address + ", ContactNumber=" + ContactNumber + "]";
 	}
-	
-	
-	
+
 }

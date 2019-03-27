@@ -135,9 +135,10 @@ public class Branches {
 
 	@Override
 	public String toString() {
-		return "Branches [ID=" + ID + ", Name=" + Name + ", City=" + City + ", branchCars=" + branchCars + ", client="
-				+ client + ", salesPerson=" + salesPerson + "]";
+		return "Branches [Name=" + Name + ", City=" + City + "]";
 	}
+
+
 
 	
 }

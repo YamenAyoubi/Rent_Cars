@@ -170,11 +170,9 @@ public class Cars {
 
 	@Override
 	public String toString() {
-		return "Cars [ID=" + ID + ", Refrance=" + Refrance + ", branch=" + branch + ", client=" + client
-				+ ", salesPerson=" + salesPerson + ", rentalprices=" + rentalprices + ", more_Descriptions="
-				+ more_Descriptions + ", agreement=" + agreement + "]";
+		return "Cars [Refrance=" + Refrance + ", branch=" + branch + ", rentalprices=" + rentalprices
+				+ ", more_Descriptions=" + more_Descriptions + "]";
 	}
 
-	
-	
+
 }

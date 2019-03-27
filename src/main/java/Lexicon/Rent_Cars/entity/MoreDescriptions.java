@@ -187,9 +187,8 @@ public class MoreDescriptions {
 
 	@Override
 	public String toString() {
-		return "MoreDescriptions [ID=" + ID + ", Brand=" + Brand + ", Color=" + Color + ", Model=" + Model + ", Size="
-				+ Size + ", Fuel=" + Fuel + ", Auto=" + Auto + ", Rented=" + Rented + ", More_Details=" + More_Details
-				+ ", cars=" + cars + "]";
+		return "MoreDescriptions [Brand=" + Brand + ", Color=" + Color + ", Model=" + Model + ", Size=" + Size
+				+ ", Fuel=" + Fuel + ", Auto=" + Auto + ", Rented=" + Rented + ", More_Details=" + More_Details + "]";
 	}
 	
 	

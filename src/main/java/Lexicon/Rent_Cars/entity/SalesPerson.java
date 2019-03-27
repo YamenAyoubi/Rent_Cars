@@ -116,13 +116,9 @@ public class SalesPerson {
 
 	@Override
 	public String toString() {
-		return "SalesPerson [ID=" + ID + ", FirstName=" + FirstName + ", SecondName=" + SecondName + ", cars=" + cars
-				+ ", contactsInfo=" + contactsInfo + "]";
+		return "SalesPerson [FirstName=" + FirstName + ", SecondName=" + SecondName + ", contactsInfo=" + contactsInfo
+				+ "]";
 	}
-	
-	
-	
-	
 	
 }
 

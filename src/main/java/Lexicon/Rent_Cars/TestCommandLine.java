@@ -1,6 +1,6 @@
 package Lexicon.Rent_Cars;
 
-import org.dom4j.Branch;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,8 +59,6 @@ public class TestCommandLine implements CommandLineRunner {
 	}
 
 
-
-
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -70,8 +68,8 @@ public class TestCommandLine implements CommandLineRunner {
 		Client Erik = client_repo.save(new Client("Erik","Eriksoon"));
 		ContactsInfo info1=contact_info_repo.save(new ContactsInfo("Vaxjo","1234567"));
 		ContactsInfo info2=contact_info_repo.save(new ContactsInfo("Vaxjo","7654321"));
-		RentalPrices prices = rental_prices_repo.save(new RentalPrices(6000, 240, 25));
-		RentalPrices prices1 = rental_prices_repo.save(new RentalPrices(6500, 290, 35));
+		RentalPrices prices = rental_prices_repo.save(new RentalPrices(70));
+		RentalPrices prices1 = rental_prices_repo.save(new RentalPrices(85));
 		SalesPerson Yam = sales_person_repo.save(new SalesPerson("Yamen", "Ayo"));
 		MoreDescriptions MorInf = more_des_repo.save(new MoreDescriptions("Volovo", "balck", "2017"," 6 Seats", true, true, false, "Small Crash at back"));
 		MoreDescriptions MorInf1 = more_des_repo.save(new MoreDescriptions("Opel", "Silver", "2016"," 5 Seats", true, true, false, "Small Crash at front"));		
@@ -92,13 +90,11 @@ public class TestCommandLine implements CommandLineRunner {
 		
 		
 		
-		System.out.println(Opel);
-		System.out.println(Volvo);
+
 		System.out.println(Agre1);
 		System.out.println(Agre2);
 
-		
-		
+	
 		
 	}
 
