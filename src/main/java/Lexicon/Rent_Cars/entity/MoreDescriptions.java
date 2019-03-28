@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class MoreDescriptions {
@@ -19,16 +20,17 @@ public class MoreDescriptions {
 	private String Size;
 	private boolean Fuel;
 	private boolean Auto;
-	private boolean Rented;
+	private boolean Rented=false;
 	private String More_Details;
 	
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private Cars cars;
-
-
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	private Agreement agreement;
+	
 	public MoreDescriptions(String brand, String color, String model, String size, boolean fuel, boolean auto,
-			boolean rented, String more_Details) {
+			 String more_Details) {
 		super();
 		Brand = brand;
 		Color = color;
@@ -36,12 +38,11 @@ public class MoreDescriptions {
 		Size = size;
 		Fuel = fuel;
 		Auto = auto;
-		Rented = rented;
 		More_Details = more_Details;
 	}
 	
 	public MoreDescriptions() {}
-
+	
 	public String getBrand() {
 		return Brand;
 	}
@@ -90,12 +91,13 @@ public class MoreDescriptions {
 		Auto = auto;
 	}
 
-	public boolean isRented() {
-		return Rented;
-	}
-
 	public void setRented(boolean rented) {
 		Rented = rented;
+	}
+	
+	public boolean isRented() {
+		
+		return Rented;
 	}
 
 	public String getMore_Details() {
@@ -116,6 +118,14 @@ public class MoreDescriptions {
 
 	public int getID() {
 		return ID;
+	}
+	
+	public Agreement getAgreement() {
+		return agreement;
+	}
+
+	public void setAgreement(Agreement agreement) {
+		this.agreement = agreement;
 	}
 
 	@Override
@@ -186,7 +196,7 @@ public class MoreDescriptions {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() {	
 		return "MoreDescriptions [Brand=" + Brand + ", Color=" + Color + ", Model=" + Model + ", Size=" + Size
 				+ ", Fuel=" + Fuel + ", Auto=" + Auto + ", Rented=" + Rented + ", More_Details=" + More_Details + "]";
 	}

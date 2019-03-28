@@ -26,9 +26,11 @@ public class Agreement {
 	private Client client_Details;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private SalesPerson sales_Person;
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+	private MoreDescriptions More_Des;
 
-	int Baby_Chair_Cost;
-	int Navigation_Cost;
+	private int Baby_Chair_Cost;
+	private int Navigation_Cost;
 
 	public Agreement(int rent_Period, boolean navigation, boolean baby_Chair, Cars selected_Car, Branches branch_Car,
 			Client client_Details, SalesPerson sales_Person) {
@@ -36,15 +38,16 @@ public class Agreement {
 		Rent_Period = rent_Period;
 		Navigation = navigation;
 		Baby_Chair = baby_Chair;
+		selected_Car.getMore_Descriptions().setRented(true);
 		this.selected_Car = selected_Car;
 		this.branch_Car = branch_Car;
 		this.client_Details = client_Details;
 		this.sales_Person = sales_Person;
-
+		countCost();
+		Discount();
 	}
 
-	public Agreement() {
-	}
+	public Agreement() {}
 
 	private void countCost() {
 
@@ -83,16 +86,17 @@ public class Agreement {
 	}
 
 	public void setSelected_Car(Cars selected_Car) {
+		
 		this.selected_Car = selected_Car;
 	}
 
 	public int getRent_Period() {
-
 		return Rent_Period;
 	}
 
 	public void setRent_Period(int rent_Period) {
 		Rent_Period = rent_Period;
+		
 	}
 
 	public Cars getSelected_Car() {
@@ -120,7 +124,6 @@ public class Agreement {
 	}
 
 	public int getToltalCost() {
-		countCost();
 		return Total_Cost;
 	}
 
@@ -218,10 +221,9 @@ public class Agreement {
 
 	@Override
 	public String toString() {
-		countCost();
-		Discount();
+		
 		return "Agreement [Agremment_ID=" + Agreement_ID + ", Rent_Period=" + Rent_Period + ", Navigation=" + Navigation
-				+ ", Baby_Chair=" + Baby_Chair + ", ToltalCost=" + Total_Cost + ", selected_Car=" + selected_Car
+				+ ", Baby_Chair=" + Baby_Chair + ", ToltalCost=" + Total_Cost + ", selected_Car=" + getSelected_Car()
 				+ ", branch_Car=" + branch_Car + ", client_Details=" + client_Details + ", sales_Person=" + sales_Person
 				+ ", Baby_Chair_Cost=" + Baby_Chair_Cost + ", Navigation_Cost=" + Navigation_Cost + "]";
 	}
