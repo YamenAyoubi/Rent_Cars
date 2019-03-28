@@ -72,7 +72,7 @@ public class TestCommandLine implements CommandLineRunner {
 		RentalPrices prices = rental_prices_repo.save(new RentalPrices(70));
 		RentalPrices prices1 = rental_prices_repo.save(new RentalPrices(85));
 		SalesPerson Yam = sales_person_repo.save(new SalesPerson("Yamen", "Ayo"));
-		MoreDescriptions MorInf = more_des_repo.save(new MoreDescriptions("Volovo", "balck", "2017"," 6 Seats", true, true, "Small Crash at back"));
+		MoreDescriptions MorInf = more_des_repo.save(new MoreDescriptions("Volvo", "balck", "2017"," 6 Seats", true, true, "Small Crash at back"));
 		MoreDescriptions MorInf1 = more_des_repo.save(new MoreDescriptions("Opel", "Silver", "2016"," 5 Seats", true, true, "Small Crash at front"));
 		MoreDescriptions MorInf3 = more_des_repo.save(new MoreDescriptions("Opel", "Silver", "2016"," 5 Seats", true, true, "Small Crash at front"));
 
