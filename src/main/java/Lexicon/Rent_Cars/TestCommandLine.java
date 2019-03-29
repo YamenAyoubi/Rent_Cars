@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
@@ -22,15 +23,10 @@ import Lexicon.Rent_Cars.repository.MoreDescriptionsRepo;
 import Lexicon.Rent_Cars.repository.RentalPricesRepo;
 import Lexicon.Rent_Cars.repository.SalesPersonRepo;
 
-/**
- * @author Yamen
- *
- */
+
 @Component
 @Transactional(rollbackFor = Exception.class)
 public class TestCommandLine implements CommandLineRunner {
-
-
 
 	private CarsRepo cars_repo;
 	private AgreementRepo agreement_repo;
@@ -42,7 +38,7 @@ public class TestCommandLine implements CommandLineRunner {
 	private SalesPersonRepo sales_person_repo;
 
 	
-
+	
 
 	public TestCommandLine(CarsRepo cars_repo, AgreementRepo agreement_repo, BranchesRepo branches_repo,
 			ClientsRepo client_repo, ContactInfoRepo contact_info_repo, MoreDescriptionsRepo more_des_repo,
@@ -90,9 +86,11 @@ public class TestCommandLine implements CommandLineRunner {
 		Vaxjo.setSalesPerson(Yam);
 		Nissan.setMore_Descriptions(MorInf3);
 		
+
 		Agreement Agre3 = agreement_repo.save(new Agreement(65, false, false, Opel, Vaxjo, Erik,Yam)); 	
+
 		Agreement Agre1 = agreement_repo.save(new Agreement(30, true, true, Volvo, Vaxjo, Erik, Yam));
-		
+
 		Agreement Agre2 = agreement_repo.save(new Agreement(20, true, true, Opel, Vaxjo, Erik,Yam)); 
 		
 
