@@ -17,7 +17,7 @@ public class Cars {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
-	private String Refrance;
+	private String Name;
 
 
 
@@ -34,23 +34,21 @@ public class Cars {
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private Agreement agreement;
 	
-	
 
-	
-	public Cars(String refrance) {
+
+	public Cars(String name) {
 		super();
-		Refrance = refrance;
-
+		Name = name;
 	}
 
 	public Cars() {}
 
-	public String getRefrance() {
-		return Refrance;
+	public String getName() {
+		return Name;
 	}
 
-	public void setRefrance(String refrance) {
-		Refrance = refrance;
+	public void setName(String name) {
+		Name = name;
 	}
 
 	public Branches getBranch() {
@@ -105,12 +103,14 @@ public class Cars {
 		return ID;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + ((Refrance == null) ? 0 : Refrance.hashCode());
+		result = prime * result + ((Name == null) ? 0 : Name.hashCode());
 		result = prime * result + ((agreement == null) ? 0 : agreement.hashCode());
 		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
 		result = prime * result + ((client == null) ? 0 : client.hashCode());
@@ -131,10 +131,10 @@ public class Cars {
 		Cars other = (Cars) obj;
 		if (ID != other.ID)
 			return false;
-		if (Refrance == null) {
-			if (other.Refrance != null)
+		if (Name == null) {
+			if (other.Name != null)
 				return false;
-		} else if (!Refrance.equals(other.Refrance))
+		} else if (!Name.equals(other.Name))
 			return false;
 		if (agreement == null) {
 			if (other.agreement != null)
@@ -171,7 +171,7 @@ public class Cars {
 
 	@Override
 	public String toString() {
-		return "Cars [Refrance=" + Refrance + ", branch=" + branch + ", rentalprices=" + rentalprices
+		return "Cars [ID=" + ID + ", Name=" + Name + ", branch=" + branch + ", rentalprices=" + rentalprices
 				+ ", more_Descriptions=" + more_Descriptions + "]";
 	}
 

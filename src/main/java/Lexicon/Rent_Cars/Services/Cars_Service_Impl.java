@@ -1,9 +1,14 @@
 package Lexicon.Rent_Cars.Services;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import Lexicon.Rent_Cars.entity.Cars;
 import Lexicon.Rent_Cars.repository.CarsRepo;
+
 
 
 @Service
@@ -20,26 +25,27 @@ public class Cars_Service_Impl implements  Cars_Service{
 
 	@Override
 	public Cars findById(int id) {
-		Cars result = new Cars();
-		cars_Repo.findById(id);
-		return result;		
+		Optional<Cars> Result = cars_Repo.findById(id);
+		if (Result.isPresent()) {
+			return Result.get();
+		}
+		return null;
 	}
-//	@Override
-//	public List<Cars> findAll() {
-//		return (List<Cars>) cars_Repo.findAll();
-//	}
-//	@Override
-//	public List<Cars> findByName(String name){
-//		return cars_Repo.findByNameIgnoreCase(name);
-//	}
-//	@Override
-//	public boolean removeCar(int id) {
-//		cars_Repo.deleteById(id);		
-//		return cars_Repo.existsById(id);
-//	}
-//	@Override
-//	public Cars save(Cars car) {
-//		return cars_Repo.save(car);
-//	}
+	
+	@Override
+	public Cars save(Cars car) {
+		return cars_Repo.save(car);
+	}
 
+	@Override
+	public boolean remove(int id) {
+		 cars_Repo.deleteById(id);
+		return cars_Repo.existsById(id);
+	}
+
+	@Override
+	public List<Cars> findAll() {
+		
+		return (List<Cars>) cars_Repo.findAll();
+	}
 }
