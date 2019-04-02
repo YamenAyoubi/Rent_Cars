@@ -10,7 +10,7 @@ public interface Agreement_Services {
 	
 	Agreement findById(int id);
 	
-	public List<Agreement> findAll();
+	List<Agreement> findAll();
 	
 	Agreement save(Agreement agreement);
 	

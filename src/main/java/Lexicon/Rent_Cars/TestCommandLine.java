@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import Lexicon.Rent_Cars.Services.Cars_Service_Impl;
+import Lexicon.Rent_Cars.Services.Cars_Services_Impl;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
@@ -36,7 +36,7 @@ public class TestCommandLine implements CommandLineRunner {
 	private MoreDescriptionsRepo more_des_repo;
 	private RentalPricesRepo rental_prices_repo;
 	private SalesPersonRepo sales_person_repo;
-	private Cars_Service_Impl IMP;
+	private Cars_Services_Impl IMP;
 	
 	
 

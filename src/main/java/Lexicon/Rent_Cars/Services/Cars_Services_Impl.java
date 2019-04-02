@@ -13,12 +13,12 @@ import Lexicon.Rent_Cars.repository.CarsRepo;
 
 @Service
 @Transactional
-public class Cars_Service_Impl implements  Cars_Service{
+public class Cars_Services_Impl implements  Cars_Services{
 	
 	private CarsRepo cars_Repo;
 	
 	@Autowired
-	public Cars_Service_Impl(CarsRepo cars_Repo) {
+	public Cars_Services_Impl(CarsRepo cars_Repo) {
 		super();
 		this.cars_Repo = cars_Repo;
 	}

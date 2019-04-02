@@ -5,7 +5,7 @@ import Lexicon.Rent_Cars.entity.Cars;
 
 
 
-public interface Cars_Service {
+public interface Cars_Services {
 	
 	Cars findById(int id);
 	
