@@ -129,8 +129,8 @@ public class SalesPerson {
 
 	@Override
 	public String toString() {
-		return "SalesPerson [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", contactsInfo="
-				+ contactsInfo + ", agreement=" + agreement + "]";
+		return "SalesPerson [firstName=" + firstName + ", secondName=" + secondName + ", contactsInfo="
+				+ contactsInfo + "]";
 	}
 	
 }

@@ -24,10 +24,7 @@ public class Branches {
 	
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private List<Cars> branchCars=new ArrayList<>();
-	@OneToOne(cascade=CascadeType.ALL)
-	private Client client;
-	@OneToOne(cascade=CascadeType.ALL)
-	private SalesPerson salesPerson;
+
 	
 	public Branches(String name, String city) {
 		super();
@@ -61,22 +58,6 @@ public class Branches {
 		this.branchCars = branchCars;
 	}
 
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public SalesPerson getSalesPerson() {
-		return salesPerson;
-	}
-
-	public void setSalesPerson(SalesPerson salesPerson) {
-		this.salesPerson = salesPerson;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -87,10 +68,8 @@ public class Branches {
 		int result = 1;
 		result = prime * result + ((branchCars == null) ? 0 : branchCars.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((client == null) ? 0 : client.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((salesPerson == null) ? 0 : salesPerson.hashCode());
 		return result;
 	}
 
@@ -113,11 +92,6 @@ public class Branches {
 				return false;
 		} else if (!city.equals(other.city))
 			return false;
-		if (client == null) {
-			if (other.client != null)
-				return false;
-		} else if (!client.equals(other.client))
-			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -125,18 +99,12 @@ public class Branches {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (salesPerson == null) {
-			if (other.salesPerson != null)
-				return false;
-		} else if (!salesPerson.equals(other.salesPerson))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Branches [id=" + id + ", name=" + name + ", city=" + city + "]";
+		return "Branches [ name=" + name + ", city=" + city + "]";
 	}
 
-	
 }

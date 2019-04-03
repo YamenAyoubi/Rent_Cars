@@ -26,6 +26,10 @@ public class ContactsInfo {
 		this.address = address;
 		this.contactNumber = contactNumber;
 	}
+	
+
+	public ContactsInfo() {}
+
 
 	public String getAddress() {
 		return address;

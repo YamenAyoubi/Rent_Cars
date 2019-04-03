@@ -1,12 +1,20 @@
 package Lexicon.Rent_Cars;
 
+import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import Lexicon.Rent_Cars.Services.Cars_Services_Impl;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
@@ -24,57 +32,34 @@ import Lexicon.Rent_Cars.repository.MoreDescriptionsRepo;
 import Lexicon.Rent_Cars.repository.RentalPricesRepo;
 import Lexicon.Rent_Cars.repository.SalesPersonRepo;
 
-
-@Component
-@Transactional(rollbackFor = Exception.class)
-public class TestCommandLine implements CommandLineRunner {
-
-	 private CarsRepo test_cars_repo;
-	 private AgreementRepo test_agreement_repo;
-	 private BranchesRepo test_branch_repo;
-	 private ClientsRepo test_client_repo;
-	 private ContactInfoRepo test_cont_repo;
-	 private MoreDescriptionsRepo test_Mor_repo;
-	 private RentalPricesRepo test_rentPrices_repo;
-	 private SalesPersonRepo test_sales_repo;
-	 
-	 
-		private Agreement Test_agreement;
-		private Agreement Test_agreement2;
-		private Branches Test_branch;
-		private Cars Test_Car;
-		private Client Test_client;
-		private ContactsInfo Test_cont1;
-		private ContactsInfo Test_cont2;
-		private MoreDescriptions Test_Mor;
-		private RentalPrices Test_Rent_Prices;
-		private SalesPerson Test_Sales_Person;
+@RunWith(SpringRunner.class)
+@DataJpaTest
+@Transactional
+public class Agreement_Repo_Test {
+	
+	@Autowired private CarsRepo test_cars_repo;
+	@Autowired private AgreementRepo test_agreement_repo;
+	@Autowired private BranchesRepo test_branch_repo;
+	@Autowired private ClientsRepo test_client_repo;
+	@Autowired private ContactInfoRepo test_cont_repo;
+	@Autowired private MoreDescriptionsRepo test_Mor_repo;
+	@Autowired private RentalPricesRepo test_rentPrices_repo;
+	@Autowired private SalesPersonRepo test_sales_repo;
+	
+	private Agreement Test_agreement;
+	private Agreement Test_agreement2;
+	private Branches Test_branch;
+	private Cars Test_Car;
+	private Client Test_client;
+	private ContactsInfo Test_cont1;
+	private ContactsInfo Test_cont2;
+	private MoreDescriptions Test_Mor;
+	private RentalPrices Test_Rent_Prices;
+	private SalesPerson Test_Sales_Person;
 	
 	
-	
-	public TestCommandLine(CarsRepo test_cars_repo, AgreementRepo test_agreement_repo, BranchesRepo test_branch_repo,
-			ClientsRepo test_client_repo, ContactInfoRepo test_cont_repo, MoreDescriptionsRepo test_Mor_repo,
-			RentalPricesRepo test_rentPrices_repo, SalesPersonRepo test_sales_repo) {
-		super();
-		this.test_cars_repo = test_cars_repo;
-		this.test_agreement_repo = test_agreement_repo;
-		this.test_branch_repo = test_branch_repo;
-		this.test_client_repo = test_client_repo;
-		this.test_cont_repo = test_cont_repo;
-		this.test_Mor_repo = test_Mor_repo;
-		this.test_rentPrices_repo = test_rentPrices_repo;
-		this.test_sales_repo = test_sales_repo;
-	}
-
-
-
-
-
-	@Override
-	public void run(String... args) throws Exception {
-		
-		
-		
+	@Before
+	public void init() {
 		Branches Bra1=new Branches("Vaxjo","Vaxjo");
 		Cars car1 = new Cars("Opel");
 		Client client1=new Client("Erik","Eriksson");	
@@ -102,8 +87,14 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
 		Test_agreement2=new Agreement();
-		
-		System.out.println(Test_agreement);
+	}
+	
+	@Test
+	public void test_findByid() {
+		Agreement expected = Test_agreement;
+		Optional<Agreement> actual =  test_agreement_repo.findById(1);
+	assertEquals(expected, actual.get());
+	
 	}
 
 }
