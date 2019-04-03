@@ -16,9 +16,9 @@ public class Agreement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int rent_period;
 	private boolean navigation;
 	private boolean baby_chair;
+	private int rent_period;
 	private int total_cost;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
@@ -31,20 +31,27 @@ public class Agreement {
 	private int baby_chair_cost;
 	private int navigation_cost;
 	private final LocalDateTime creationDateTime;
+	private final LocalDateTime endingDateTime;
 
 
-	public Agreement(int rent_period, boolean navigation, boolean baby_chair) {
+	public Agreement(boolean navigation, boolean baby_chair, Cars selected_Car, Client client_Details,
+			SalesPerson sales_Person, int rent_period) {
 		super();
-		this.rent_period = rent_period;
 		this.navigation = navigation;
 		this.baby_chair = baby_chair;
+		this.selected_Car = selected_Car;
+		this.client_Details = client_Details;
+		this.sales_Person = sales_Person;
+		this.rent_period = rent_period;
 		creationDateTime = LocalDateTime.now();
+		endingDateTime=creationDateTime.plusDays(rent_period);
 		countCost();
 		Discount();
 	}
 
 	public Agreement() {
 		creationDateTime = LocalDateTime.now();
+		endingDateTime=creationDateTime.plusDays(rent_period);
 	}
 
 	private void countCost() {
@@ -81,14 +88,6 @@ public class Agreement {
 			total_cost = total_cost * 70 / 100;
 			System.out.println("You Got Discount 30 % ");
 		}
-	}
-
-	public int getRent_period() {
-		return rent_period;
-	}
-
-	public void setRent_period(int rent_period) {
-		this.rent_period = rent_period;
 	}
 
 	public boolean isNavigation() {
@@ -159,8 +158,20 @@ public class Agreement {
 		return id;
 	}
 
+	public int getRent_period() {
+		return rent_period;
+	}
+
 	public LocalDateTime getCreationDateTime() {
 		return creationDateTime;
+	}
+
+	public LocalDateTime getEndingDateTime() {
+		return endingDateTime;
+	}
+
+	public void setRent_period(int rent_period) {
+		this.rent_period = rent_period;
 	}
 
 	@Override
@@ -171,6 +182,7 @@ public class Agreement {
 		result = prime * result + baby_chair_cost;
 		result = prime * result + ((client_Details == null) ? 0 : client_Details.hashCode());
 		result = prime * result + ((creationDateTime == null) ? 0 : creationDateTime.hashCode());
+		result = prime * result + ((endingDateTime == null) ? 0 : endingDateTime.hashCode());
 		result = prime * result + id;
 		result = prime * result + (navigation ? 1231 : 1237);
 		result = prime * result + navigation_cost;
@@ -204,6 +216,11 @@ public class Agreement {
 				return false;
 		} else if (!creationDateTime.equals(other.creationDateTime))
 			return false;
+		if (endingDateTime == null) {
+			if (other.endingDateTime != null)
+				return false;
+		} else if (!endingDateTime.equals(other.endingDateTime))
+			return false;
 		if (id != other.id)
 			return false;
 		if (navigation != other.navigation)
@@ -229,10 +246,12 @@ public class Agreement {
 
 	@Override
 	public String toString() {
-		return "Agreement [id=" + id + ", rent_period=" + rent_period + ", navigation=" + navigation + ", baby_chair="
-				+ baby_chair + ", total_cost=" + total_cost + ", selected_Car=" + selected_Car + ", client_Details="
-				+ client_Details + ", sales_Person=" + sales_Person + ", baby_chair_cost=" + baby_chair_cost
-				+ ", navigation_cost=" + navigation_cost + ", creationDateTime=" + creationDateTime + "]";
+		return "Agreement [id=" + id + ", navigation=" + navigation + ", baby_chair=" + baby_chair + ", total_cost="
+				+ total_cost + ", selected_Car=" + selected_Car + ", client_Details=" + client_Details
+				+ ", sales_Person=" + sales_Person + ", baby_chair_cost=" + baby_chair_cost + ", navigation_cost="
+				+ navigation_cost + ", creationDateTime=" + creationDateTime + ", endingDateTime=" + endingDateTime
+				+ "]";
 	}
 
+	
 }
