@@ -10,7 +10,7 @@ public interface ContactsInfo_Services {
 	
 	List<ContactsInfo> FindAll();
 	
-	ContactsInfo Save(ContactsInfo salesPerson);
+	ContactsInfo Save(ContactsInfo contactsInfo);
 	
 	boolean Remove (int id);
 

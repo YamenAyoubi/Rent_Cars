@@ -34,11 +34,7 @@ public class Braches_Services_Impl implements Branches_Services{
 
 	@Override
 	public List<Branches> findAll() {
-		
 		return (List<Branches>) branch_Repo.findAll();
 	}
-	
-	
-
 
 }

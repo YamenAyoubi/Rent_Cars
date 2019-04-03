@@ -6,5 +6,6 @@ public interface RentalPrices_services {
 	RentalPrices Save(RentalPrices rentalPrices);
 	
 	boolean Remove (int id);
-
+	
+	void AddRentPricesToCars (RentalPrices rentalPrices);
 }

@@ -13,72 +13,84 @@ public class SalesPerson {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ID;
-	private String FirstName;
-	private String SecondName;
+	private int id;
+	private String firstName;
+	private String secondName;
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	private Cars cars;
+
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactsInfo contactsInfo;
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	private Agreement agreement;
 	
 	
 	public SalesPerson(String firstName, String secondName) {
 		super();
-		FirstName = firstName;
-		SecondName = secondName;
-	
+		this.firstName = firstName;
+		this.secondName = secondName;
 	}
-	
+
+
 	public SalesPerson() {}
 
+
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
+
 
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
+
 
 	public String getSecondName() {
-		return SecondName;
+		return secondName;
 	}
+
 
 	public void setSecondName(String secondName) {
-		SecondName = secondName;
+		this.secondName = secondName;
 	}
 
-	public Cars getCars() {
-		return cars;
-	}
-
-	public void setCars(Cars cars) {
-		this.cars = cars;
-	}
 
 	public ContactsInfo getContactsInfo() {
 		return contactsInfo;
 	}
 
+
 	public void setContactsInfo(ContactsInfo contactsInfo) {
 		this.contactsInfo = contactsInfo;
 	}
 
-	public int getID() {
-		return ID;
+
+	public Agreement getAgreement() {
+		return agreement;
 	}
+
+
+	public void setAgreement(Agreement agreement) {
+		this.agreement = agreement;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((FirstName == null) ? 0 : FirstName.hashCode());
-		result = prime * result + ID;
-		result = prime * result + ((SecondName == null) ? 0 : SecondName.hashCode());
-		result = prime * result + ((cars == null) ? 0 : cars.hashCode());
+		result = prime * result + ((agreement == null) ? 0 : agreement.hashCode());
 		result = prime * result + ((contactsInfo == null) ? 0 : contactsInfo.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((secondName == null) ? 0 : secondName.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -89,35 +101,36 @@ public class SalesPerson {
 		if (getClass() != obj.getClass())
 			return false;
 		SalesPerson other = (SalesPerson) obj;
-		if (FirstName == null) {
-			if (other.FirstName != null)
+		if (agreement == null) {
+			if (other.agreement != null)
 				return false;
-		} else if (!FirstName.equals(other.FirstName))
-			return false;
-		if (ID != other.ID)
-			return false;
-		if (SecondName == null) {
-			if (other.SecondName != null)
-				return false;
-		} else if (!SecondName.equals(other.SecondName))
-			return false;
-		if (cars == null) {
-			if (other.cars != null)
-				return false;
-		} else if (!cars.equals(other.cars))
+		} else if (!agreement.equals(other.agreement))
 			return false;
 		if (contactsInfo == null) {
 			if (other.contactsInfo != null)
 				return false;
 		} else if (!contactsInfo.equals(other.contactsInfo))
 			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (secondName == null) {
+			if (other.secondName != null)
+				return false;
+		} else if (!secondName.equals(other.secondName))
+			return false;
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
-		return "SalesPerson [FirstName=" + FirstName + ", SecondName=" + SecondName + ", contactsInfo=" + contactsInfo
-				+ "]";
+		return "SalesPerson [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", contactsInfo="
+				+ contactsInfo + ", agreement=" + agreement + "]";
 	}
 	
 }

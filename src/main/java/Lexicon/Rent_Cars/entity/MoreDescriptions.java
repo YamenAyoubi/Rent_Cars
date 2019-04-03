@@ -14,136 +14,147 @@ public class MoreDescriptions {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ID;
-	private String Brand;
-	private String Color;
-	private String Model;
-	private String Size;
-	private boolean Fuel;
-	private boolean Auto;
-	private boolean Rented=false;
-	private String More_Details;
+	private int id;
+	private String brand;
+	private String color;
+	private String model;
+	private String size;
+	private boolean fuel;
+	private boolean auto;
+	private boolean rented=false;
+	private String scratches;
 	
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	private Cars cars;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	private Agreement agreement;
-	
-	public MoreDescriptions(String brand, String color, String model, String size, boolean fuel, boolean auto,
-			 String more_Details) {
+	private Cars cars;
+
+
+	public MoreDescriptions(String brand, String color, String model, String size, boolean auto, String scratches) {
 		super();
-		Brand = brand;
-		Color = color;
-		Model = model;
-		Size = size;
-		Fuel = fuel;
-		Auto = auto;
-		More_Details = more_Details;
+		this.brand = brand;
+		this.color = color;
+		this.model = model;
+		this.size = size;
+		this.auto = auto;
+		this.scratches = scratches;
 	}
-	
+
+
 	public MoreDescriptions() {}
-	
+
+
 	public String getBrand() {
-		return Brand;
+		return brand;
 	}
+
 
 	public void setBrand(String brand) {
-		Brand = brand;
+		this.brand = brand;
 	}
+
 
 	public String getColor() {
-		return Color;
+		return color;
 	}
+
 
 	public void setColor(String color) {
-		Color = color;
+		this.color = color;
 	}
+
 
 	public String getModel() {
-		return Model;
+		return model;
 	}
+
 
 	public void setModel(String model) {
-		Model = model;
+		this.model = model;
 	}
+
 
 	public String getSize() {
-		return Size;
+		return size;
 	}
+
 
 	public void setSize(String size) {
-		Size = size;
+		this.size = size;
 	}
+
 
 	public boolean isFuel() {
-		return Fuel;
+		return fuel;
 	}
+
 
 	public void setFuel(boolean fuel) {
-		Fuel = fuel;
+		this.fuel = fuel;
 	}
+
 
 	public boolean isAuto() {
-		return Auto;
+		return auto;
 	}
+
 
 	public void setAuto(boolean auto) {
-		Auto = auto;
+		this.auto = auto;
 	}
+
+
+	public boolean isRented() {
+		return rented;
+	}
+
 
 	public void setRented(boolean rented) {
-		Rented = rented;
-	}
-	
-	public boolean isRented() {
-		return Rented;
+		this.rented = rented;
 	}
 
-	public String getMore_Details() {
-		return More_Details;
+
+	public String getScratches() {
+		return scratches;
 	}
 
-	public void setMore_Details(String more_Details) {
-		More_Details = more_Details;
+
+	public void setScratches(String scratches) {
+		this.scratches = scratches;
 	}
+
 
 	public Cars getCars() {
 		return cars;
 	}
 
+
 	public void setCars(Cars cars) {
 		this.cars = cars;
 	}
 
-	public int getID() {
-		return ID;
-	}
-	
-	public Agreement getAgreement() {
-		return agreement;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setAgreement(Agreement agreement) {
-		this.agreement = agreement;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (Auto ? 1231 : 1237);
-		result = prime * result + ((Brand == null) ? 0 : Brand.hashCode());
-		result = prime * result + ((Color == null) ? 0 : Color.hashCode());
-		result = prime * result + (Fuel ? 1231 : 1237);
-		result = prime * result + ID;
-		result = prime * result + ((Model == null) ? 0 : Model.hashCode());
-		result = prime * result + ((More_Details == null) ? 0 : More_Details.hashCode());
-		result = prime * result + (Rented ? 1231 : 1237);
-		result = prime * result + ((Size == null) ? 0 : Size.hashCode());
+		result = prime * result + (auto ? 1231 : 1237);
+		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
 		result = prime * result + ((cars == null) ? 0 : cars.hashCode());
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + (fuel ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + (rented ? 1231 : 1237);
+		result = prime * result + ((scratches == null) ? 0 : scratches.hashCode());
+		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -154,52 +165,56 @@ public class MoreDescriptions {
 		if (getClass() != obj.getClass())
 			return false;
 		MoreDescriptions other = (MoreDescriptions) obj;
-		if (Auto != other.Auto)
+		if (auto != other.auto)
 			return false;
-		if (Brand == null) {
-			if (other.Brand != null)
+		if (brand == null) {
+			if (other.brand != null)
 				return false;
-		} else if (!Brand.equals(other.Brand))
-			return false;
-		if (Color == null) {
-			if (other.Color != null)
-				return false;
-		} else if (!Color.equals(other.Color))
-			return false;
-		if (Fuel != other.Fuel)
-			return false;
-		if (ID != other.ID)
-			return false;
-		if (Model == null) {
-			if (other.Model != null)
-				return false;
-		} else if (!Model.equals(other.Model))
-			return false;
-		if (More_Details == null) {
-			if (other.More_Details != null)
-				return false;
-		} else if (!More_Details.equals(other.More_Details))
-			return false;
-		if (Rented != other.Rented)
-			return false;
-		if (Size == null) {
-			if (other.Size != null)
-				return false;
-		} else if (!Size.equals(other.Size))
+		} else if (!brand.equals(other.brand))
 			return false;
 		if (cars == null) {
 			if (other.cars != null)
 				return false;
 		} else if (!cars.equals(other.cars))
 			return false;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
+		if (fuel != other.fuel)
+			return false;
+		if (id != other.id)
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (rented != other.rented)
+			return false;
+		if (scratches == null) {
+			if (other.scratches != null)
+				return false;
+		} else if (!scratches.equals(other.scratches))
+			return false;
+		if (size == null) {
+			if (other.size != null)
+				return false;
+		} else if (!size.equals(other.size))
+			return false;
 		return true;
 	}
 
+
 	@Override
-	public String toString() {	
-		return "MoreDescriptions [Brand=" + Brand + ", Color=" + Color + ", Model=" + Model + ", Size=" + Size
-				+ ", Fuel=" + Fuel + ", Auto=" + Auto + ", Rented=" + Rented + ", More_Details=" + More_Details + "]";
+	public String toString() {
+		return "MoreDescriptions [brand=" + brand + ", color=" + color + ", model=" + model + ", size=" + size
+				+ ", fuel=" + fuel + ", auto=" + auto + ", rented=" + rented + ", scratches=" + scratches + "]";
 	}
 	
+	
+	
+
 	
 }

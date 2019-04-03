@@ -14,38 +14,32 @@ public class Agreement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Agreement_ID;
-	private int Rent_Period;
-	private boolean Navigation;
-	private boolean Baby_Chair;
-	private int Total_Cost;
+	private int id;
+	private int rent_period;
+	private boolean navigation;
+	private boolean baby_chair;
+	private int total_cost;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private Cars selected_Car;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
-	private Branches Cars_Branch;
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private Client client_Details;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private SalesPerson sales_Person;
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
-	private MoreDescriptions More_Des;
 
-	private int Baby_Chair_Cost;
-	private int Navigation_Cost;
+	private int baby_chair_cost;
+	private int navigation_cost;
 
 
-	public Agreement(int rent_Period, boolean navigation, boolean baby_Chair, Cars selected_Car, Branches car_Branch,
-			Client client_Details, SalesPerson sales_Person) {
+
+	public Agreement(int rent_period, boolean navigation, boolean baby_chair, int baby_chair_cost,
+			int navigation_cost) {
 		super();
-		Rent_Period = rent_Period;
-		Navigation = navigation;
-		Baby_Chair = baby_Chair;
-		selected_Car.getMore_Descriptions().setRented(true);
-		this.selected_Car = selected_Car;
-		this.Cars_Branch = car_Branch;
-		this.client_Details = client_Details;
-		this.sales_Person = sales_Person;
+		this.rent_period = rent_period;
+		this.navigation = navigation;
+		this.baby_chair = baby_chair;
+		this.baby_chair_cost = baby_chair_cost;
+		this.navigation_cost = navigation_cost;
 		countCost();
 		Discount();
 	}
@@ -54,83 +48,78 @@ public class Agreement {
 
 	private void countCost() {
 
-		if (Navigation == true) {
-			Navigation_Cost = 30 * Rent_Period;
+		if (navigation == true) {
+			navigation_cost = 30 * rent_period;
 			
 		} else {
-			Navigation_Cost = 0;
+			navigation_cost = 0;
 		}
 
-		if (Baby_Chair == true) {
-			Baby_Chair_Cost = 20 * Rent_Period;
+		if (baby_chair == true) {
+			baby_chair_cost = 20 * rent_period;
 		} else {
-			Baby_Chair_Cost = 0;
+			baby_chair_cost = 0;
 		}
-		Total_Cost = selected_Car.getRentalprices().getDailyRent() * Rent_Period + Baby_Chair_Cost + Navigation_Cost;
+		total_cost = selected_Car.getRentalprices().getRentPrice() * rent_period + baby_chair_cost + navigation_cost;
 	}
 
 	private void Discount() {
 
-		if (Rent_Period <= 30) {
+		if (rent_period <= 30) {
 
-			Total_Cost = Total_Cost * 100 / 100;
+			total_cost = total_cost * 100 / 100;
 
-		} else if (Rent_Period > 30) {
-			Total_Cost = Total_Cost * 90 / 100;
+		} else if (rent_period > 30) {
+			total_cost = total_cost * 90 / 100;
 			System.out.println("You Got Discount 10 % ");
-		} else if (Rent_Period > 60) {
+		} else if (rent_period > 60) {
 
-			Total_Cost = Total_Cost * 80 / 100;
+			total_cost = total_cost * 80 / 100;
 			System.out.println("You Got Discount 20 % ");
 		} else {
-			Total_Cost = Total_Cost * 70 / 100;
+			total_cost = total_cost * 70 / 100;
 			System.out.println("You Got Discount 30 % ");
 		}
 	}
 
-	public void setSelected_Car(Cars selected_Car) {
-		this.selected_Car = selected_Car;
+	public int getRent_period() {
+		return rent_period;
 	}
 
-	public int getRent_Period() {
-		return Rent_Period;
+	public void setRent_period(int rent_period) {
+		this.rent_period = rent_period;
 	}
 
-	public void setRent_Period(int rent_Period) {
-		Rent_Period = rent_Period;
-		
+	public boolean isNavigation() {
+		return navigation;
+	}
+
+	public void setNavigation(boolean navigation) {
+		this.navigation = navigation;
+	}
+
+	public boolean isBaby_chair() {
+		return baby_chair;
+	}
+
+	public void setBaby_chair(boolean baby_chair) {
+		this.baby_chair = baby_chair;
+	}
+
+	public int getTotal_cost() {
+		return total_cost;
+	}
+
+	public void setTotal_cost(int total_cost) {
+		this.total_cost = total_cost;
 	}
 
 	public Cars getSelected_Car() {
 		return selected_Car;
 	}
 
-	public void setNavigation(boolean navigation) {
-		Navigation = navigation;
-	}
-
-	public boolean isNavigation() {
-		return Navigation;
-	}
-
-	public void setBaby_Chair(boolean baby_Chair) {
-		Baby_Chair = baby_Chair;
-	}
-
-	public boolean isBaby_Chair() {
-		return Baby_Chair;
-	}
-
-	public int getToltalCost() {
-		return Total_Cost;
-	}
-
-	public Branches getBranch_Car() {
-		return Cars_Branch;
-	}
-
-	public void setBranch_Car(Branches branch_Car) {
-		this.Cars_Branch = branch_Car;
+	public void setSelected_Car(Cars selected_Car) {
+		this.selected_Car = selected_Car;
 	}
 
 	public Client getClient_Details() {
@@ -149,25 +138,40 @@ public class Agreement {
 		this.sales_Person = sales_Person;
 	}
 
-	public int getAgremment_ID() {
-		return Agreement_ID;
+	public int getBaby_chair_cost() {
+		return baby_chair_cost;
+	}
+
+	public void setBaby_chair_cost(int baby_chair_cost) {
+		this.baby_chair_cost = baby_chair_cost;
+	}
+
+	public int getNavigation_cost() {
+		return navigation_cost;
+	}
+
+	public void setNavigation_cost(int navigation_cost) {
+		this.navigation_cost = navigation_cost;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Agreement_ID;
-		result = prime * result + (Baby_Chair ? 1231 : 1237);
-		result = prime * result + Baby_Chair_Cost;
-		result = prime * result + (Navigation ? 1231 : 1237);
-		result = prime * result + Navigation_Cost;
-		result = prime * result + Rent_Period;
-		result = prime * result + Total_Cost;
-		result = prime * result + ((Cars_Branch == null) ? 0 : Cars_Branch.hashCode());
+		result = prime * result + (baby_chair ? 1231 : 1237);
+		result = prime * result + baby_chair_cost;
 		result = prime * result + ((client_Details == null) ? 0 : client_Details.hashCode());
+		result = prime * result + id;
+		result = prime * result + (navigation ? 1231 : 1237);
+		result = prime * result + navigation_cost;
+		result = prime * result + rent_period;
 		result = prime * result + ((sales_Person == null) ? 0 : sales_Person.hashCode());
 		result = prime * result + ((selected_Car == null) ? 0 : selected_Car.hashCode());
+		result = prime * result + total_cost;
 		return result;
 	}
 
@@ -180,29 +184,22 @@ public class Agreement {
 		if (getClass() != obj.getClass())
 			return false;
 		Agreement other = (Agreement) obj;
-		if (Agreement_ID != other.Agreement_ID)
+		if (baby_chair != other.baby_chair)
 			return false;
-		if (Baby_Chair != other.Baby_Chair)
-			return false;
-		if (Baby_Chair_Cost != other.Baby_Chair_Cost)
-			return false;
-		if (Navigation != other.Navigation)
-			return false;
-		if (Navigation_Cost != other.Navigation_Cost)
-			return false;
-		if (Rent_Period != other.Rent_Period)
-			return false;
-		if (Total_Cost != other.Total_Cost)
-			return false;
-		if (Cars_Branch == null) {
-			if (other.Cars_Branch != null)
-				return false;
-		} else if (!Cars_Branch.equals(other.Cars_Branch))
+		if (baby_chair_cost != other.baby_chair_cost)
 			return false;
 		if (client_Details == null) {
 			if (other.client_Details != null)
 				return false;
 		} else if (!client_Details.equals(other.client_Details))
+			return false;
+		if (id != other.id)
+			return false;
+		if (navigation != other.navigation)
+			return false;
+		if (navigation_cost != other.navigation_cost)
+			return false;
+		if (rent_period != other.rent_period)
 			return false;
 		if (sales_Person == null) {
 			if (other.sales_Person != null)
@@ -214,16 +211,19 @@ public class Agreement {
 				return false;
 		} else if (!selected_Car.equals(other.selected_Car))
 			return false;
+		if (total_cost != other.total_cost)
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		
-		return "Agreement [Agremment_ID=" + Agreement_ID + ", Rent_Period=" + Rent_Period + ", Navigation=" + Navigation
-				+ ", Baby_Chair=" + Baby_Chair + ", ToltalCost=" + Total_Cost + ", selected_Car=" + getSelected_Car()
-				+ ", branch_Car=" + Cars_Branch + ", client_Details=" + client_Details + ", sales_Person=" + sales_Person
-				+ ", Baby_Chair_Cost=" + Baby_Chair_Cost + ", Navigation_Cost=" + Navigation_Cost + "]";
+		return "Agreement [id=" + id + ", rent_period=" + rent_period + ", navigation=" + navigation + ", baby_chair="
+				+ baby_chair + ", total_cost=" + total_cost + ", selected_Car=" + selected_Car + ", client_Details="
+				+ client_Details + ", sales_Person=" + sales_Person + ", baby_chair_cost=" + baby_chair_cost
+				+ ", navigation_cost=" + navigation_cost + "]";
 	}
+	
+	
 
 }

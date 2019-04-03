@@ -12,9 +12,9 @@ public class ContactsInfo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ID;
-	private String Address;
-	private String ContactNumber;
+	private int id;
+	private String address;
+	private String contactNumber;
 
 	@OneToOne(cascade=CascadeType.ALL)
 	private Client client;
@@ -23,26 +23,24 @@ public class ContactsInfo {
 	
 	public ContactsInfo(String address, String contactNumber) {
 		super();
-		Address = address;
-		ContactNumber = contactNumber;
+		this.address = address;
+		this.contactNumber = contactNumber;
 	}
-	
-	public ContactsInfo() {}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public String getContactNumber() {
-		return ContactNumber;
+		return contactNumber;
 	}
 
 	public void setContactNumber(String contactNumber) {
-		ContactNumber = contactNumber;
+		this.contactNumber = contactNumber;
 	}
 
 	public Client getClient() {
@@ -61,18 +59,18 @@ public class ContactsInfo {
 		this.salesPerson = salesPerson;
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Address == null) ? 0 : Address.hashCode());
-		result = prime * result + ((ContactNumber == null) ? 0 : ContactNumber.hashCode());
-		result = prime * result + ID;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((client == null) ? 0 : client.hashCode());
+		result = prime * result + ((contactNumber == null) ? 0 : contactNumber.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((salesPerson == null) ? 0 : salesPerson.hashCode());
 		return result;
 	}
@@ -86,22 +84,22 @@ public class ContactsInfo {
 		if (getClass() != obj.getClass())
 			return false;
 		ContactsInfo other = (ContactsInfo) obj;
-		if (Address == null) {
-			if (other.Address != null)
+		if (address == null) {
+			if (other.address != null)
 				return false;
-		} else if (!Address.equals(other.Address))
-			return false;
-		if (ContactNumber == null) {
-			if (other.ContactNumber != null)
-				return false;
-		} else if (!ContactNumber.equals(other.ContactNumber))
-			return false;
-		if (ID != other.ID)
+		} else if (!address.equals(other.address))
 			return false;
 		if (client == null) {
 			if (other.client != null)
 				return false;
 		} else if (!client.equals(other.client))
+			return false;
+		if (contactNumber == null) {
+			if (other.contactNumber != null)
+				return false;
+		} else if (!contactNumber.equals(other.contactNumber))
+			return false;
+		if (id != other.id)
 			return false;
 		if (salesPerson == null) {
 			if (other.salesPerson != null)
@@ -113,7 +111,8 @@ public class ContactsInfo {
 
 	@Override
 	public String toString() {
-		return "ContactsInfo [Address=" + Address + ", ContactNumber=" + ContactNumber + "]";
+		return "ContactsInfo [address=" + address + ", contactNumber=" + contactNumber + "]";
 	}
-
+	
+	
 }

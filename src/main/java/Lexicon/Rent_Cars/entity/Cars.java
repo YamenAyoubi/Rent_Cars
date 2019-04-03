@@ -16,8 +16,8 @@ public class Cars {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ID;
-	private String Name;
+	private int id;
+	private String name;
 
 
 
@@ -38,17 +38,17 @@ public class Cars {
 
 	public Cars(String name) {
 		super();
-		Name = name;
+		this.name = name;
 	}
 
 	public Cars() {}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public Branches getBranch() {
@@ -100,7 +100,7 @@ public class Cars {
 	}
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 	
@@ -109,8 +109,8 @@ public class Cars {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
-		result = prime * result + ((Name == null) ? 0 : Name.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((agreement == null) ? 0 : agreement.hashCode());
 		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
 		result = prime * result + ((client == null) ? 0 : client.hashCode());
@@ -129,12 +129,12 @@ public class Cars {
 		if (getClass() != obj.getClass())
 			return false;
 		Cars other = (Cars) obj;
-		if (ID != other.ID)
+		if (id != other.id)
 			return false;
-		if (Name == null) {
-			if (other.Name != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!Name.equals(other.Name))
+		} else if (!name.equals(other.name))
 			return false;
 		if (agreement == null) {
 			if (other.agreement != null)
@@ -171,7 +171,7 @@ public class Cars {
 
 	@Override
 	public String toString() {
-		return "Cars [ID=" + ID + ", Name=" + Name + ", branch=" + branch + ", rentalprices=" + rentalprices
+		return "Cars [ID=" + id + ", Name=" + name + ", branch=" + branch + ", rentalprices=" + rentalprices
 				+ ", more_Descriptions=" + more_Descriptions + "]";
 	}
 

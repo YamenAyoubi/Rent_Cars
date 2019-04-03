@@ -13,6 +13,8 @@ public interface SalesPerson_Services {
 	
 	boolean Remove (int id);
 	
+	void AddSalesPersonToAgreement (SalesPerson salesperson);
+	
 	}
 
 

@@ -7,5 +7,6 @@ public interface MoreDes_Services {
 	MoreDescriptions Save(MoreDescriptions MoreDes);
 	
 	boolean Remove (int id);
-
+	
+	void AddMoreInfoToCars  (MoreDescriptions MoreDes);
 }

@@ -9,10 +9,14 @@ public interface Cars_Services {
 	
 	Cars findById(int id);
 	
-	public List<Cars> findAll();
+	List<Cars> findAll();
 	
 	Cars save(Cars car);
 	
 	boolean remove(int id);
-		
+	
+	boolean AddCarToAgreement (Cars car);
+	
+	boolean AddCarToBranch (Cars car);
+	
 }

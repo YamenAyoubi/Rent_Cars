@@ -10,4 +10,6 @@ public interface Client_Services {
 	boolean remove(int id);
 	
 	List<Client> findAll();
+	
+	void AddClientToAgreement (Client client);
 }

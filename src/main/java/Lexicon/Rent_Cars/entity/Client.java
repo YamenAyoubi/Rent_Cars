@@ -14,58 +14,38 @@ public class Client {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ID;
-	private String FirstName;
-	private String SecondName;
+	private int id;
+	private String firstName;
+	private String scondName;
+
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	private Cars cars;
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactsInfo contactsInfo;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private Agreement agreement;
 	
-	
-
-	
-	public Client(String firstName, String secondName) {
+	public Client(String firstName, String scondName) {
 		super();
-		FirstName = firstName;
-		SecondName = secondName;
+		this.firstName = firstName;
+		this.scondName = scondName;
 	}
 
 	public Client() {}
 
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 
-	public String getSecondName() {
-		return SecondName;
+	public String getScondName() {
+		return scondName;
 	}
 
-	public void setSecondName(String secondName) {
-		SecondName = secondName;
-	}
-
-	public Cars getCars() {
-		return cars;
-	}
-
-	public void setCars(Cars cars) {
-		this.cars = cars;
-	}
-
-	public ContactsInfo getContactsInfo() {
-		return contactsInfo;
-	}
-
-	public void setContactsInfo(ContactsInfo contactsInfo) {
-		this.contactsInfo = contactsInfo;
+	public void setScondName(String scondName) {
+		this.scondName = scondName;
 	}
 
 	public Agreement getAgreement() {
@@ -76,20 +56,29 @@ public class Client {
 		this.agreement = agreement;
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
+	}
+
+	public ContactsInfo getContactsInfo() {
+		return contactsInfo;
+	}
+	
+	
+
+	public void setContactsInfo(ContactsInfo contactsInfo) {
+		this.contactsInfo = contactsInfo;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((FirstName == null) ? 0 : FirstName.hashCode());
-		result = prime * result + ID;
-		result = prime * result + ((SecondName == null) ? 0 : SecondName.hashCode());
 		result = prime * result + ((agreement == null) ? 0 : agreement.hashCode());
-		result = prime * result + ((cars == null) ? 0 : cars.hashCode());
 		result = prime * result + ((contactsInfo == null) ? 0 : contactsInfo.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((scondName == null) ? 0 : scondName.hashCode());
 		return result;
 	}
 
@@ -102,40 +91,37 @@ public class Client {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (FirstName == null) {
-			if (other.FirstName != null)
-				return false;
-		} else if (!FirstName.equals(other.FirstName))
-			return false;
-		if (ID != other.ID)
-			return false;
-		if (SecondName == null) {
-			if (other.SecondName != null)
-				return false;
-		} else if (!SecondName.equals(other.SecondName))
-			return false;
 		if (agreement == null) {
 			if (other.agreement != null)
 				return false;
 		} else if (!agreement.equals(other.agreement))
-			return false;
-		if (cars == null) {
-			if (other.cars != null)
-				return false;
-		} else if (!cars.equals(other.cars))
 			return false;
 		if (contactsInfo == null) {
 			if (other.contactsInfo != null)
 				return false;
 		} else if (!contactsInfo.equals(other.contactsInfo))
 			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (scondName == null) {
+			if (other.scondName != null)
+				return false;
+		} else if (!scondName.equals(other.scondName))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Client [FirstName=" + FirstName + ", SecondName=" + SecondName + ", contactsInfo=" + contactsInfo + "]";
+		return "Client [id=" + id + ", firstName=" + firstName + ", scondName=" + scondName + ", contactsInfo="
+				+ contactsInfo + ", agreement=" + agreement + "]";
 	}
-
+	
+	
 	
 }

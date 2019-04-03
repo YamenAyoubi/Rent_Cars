@@ -5,7 +5,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Lexicon.Rent_Cars.entity.Cars;
 import Lexicon.Rent_Cars.entity.RentalPrices;
+import Lexicon.Rent_Cars.repository.CarsRepo;
 import Lexicon.Rent_Cars.repository.RentalPricesRepo;
 
 @Service
@@ -14,6 +16,8 @@ public class RentalPrices_services_Impl implements RentalPrices_services{
 
 	
 	private RentalPricesRepo rentalPrices_repo;
+	private CarsRepo cars_Repo;
+	private Cars car;
 
 	@Autowired
 	public RentalPrices_services_Impl(RentalPricesRepo rentalPrices_repo) {
@@ -33,5 +37,8 @@ public class RentalPrices_services_Impl implements RentalPrices_services{
 		return rentalPrices_repo.existsById(id);
 	}
 	
-	
+	public void AddRentPricesToCars (RentalPrices rentalPrices) {
+		car.setRentalprices(rentalPrices);
+		cars_Repo.save(car);
+	}
 }

@@ -18,9 +18,9 @@ public class Branches {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ID;
-	private String Name;
-	private String City;
+	private int id;
+	private String name;
+	private String city;
 	
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private List<Cars> branchCars=new ArrayList<>();
@@ -28,29 +28,29 @@ public class Branches {
 	private Client client;
 	@OneToOne(cascade=CascadeType.ALL)
 	private SalesPerson salesPerson;
-
+	
 	public Branches(String name, String city) {
 		super();
-		Name = name;
-		City = city;
+		this.name = name;
+		this.city = city;
 	}
-	
-	public Branches() {}
+
+	public Branches(){}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getCity() {
-		return City;
+		return city;
 	}
 
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 
 	public List<Cars> getBranchCars() {
@@ -77,19 +77,19 @@ public class Branches {
 		this.salesPerson = salesPerson;
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((City == null) ? 0 : City.hashCode());
-		result = prime * result + ID;
-		result = prime * result + ((Name == null) ? 0 : Name.hashCode());
 		result = prime * result + ((branchCars == null) ? 0 : branchCars.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((client == null) ? 0 : client.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((salesPerson == null) ? 0 : salesPerson.hashCode());
 		return result;
 	}
@@ -103,27 +103,27 @@ public class Branches {
 		if (getClass() != obj.getClass())
 			return false;
 		Branches other = (Branches) obj;
-		if (City == null) {
-			if (other.City != null)
-				return false;
-		} else if (!City.equals(other.City))
-			return false;
-		if (ID != other.ID)
-			return false;
-		if (Name == null) {
-			if (other.Name != null)
-				return false;
-		} else if (!Name.equals(other.Name))
-			return false;
 		if (branchCars == null) {
 			if (other.branchCars != null)
 				return false;
 		} else if (!branchCars.equals(other.branchCars))
 			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
 		if (client == null) {
 			if (other.client != null)
 				return false;
 		} else if (!client.equals(other.client))
+			return false;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
 			return false;
 		if (salesPerson == null) {
 			if (other.salesPerson != null)
@@ -135,10 +135,8 @@ public class Branches {
 
 	@Override
 	public String toString() {
-		return "Branches [Name=" + Name + ", City=" + City + "]";
+		return "Branches [id=" + id + ", name=" + name + ", city=" + city + "]";
 	}
-
-
 
 	
 }

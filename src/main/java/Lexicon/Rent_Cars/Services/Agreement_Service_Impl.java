@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.repository.AgreementRepo;
+import Lexicon.Rent_Cars.repository.CarsRepo;
 
 
 @Service
@@ -16,6 +17,7 @@ public class Agreement_Service_Impl implements Agreement_Services{
 	
 	
 	private AgreementRepo agreement_Repo;
+	
 
 	@Autowired
 	public Agreement_Service_Impl(AgreementRepo agreement_Repo) {
@@ -47,7 +49,4 @@ public class Agreement_Service_Impl implements Agreement_Services{
 		return agreement_Repo.existsById(id);
 	}
 	
-	
-	
-
 }
