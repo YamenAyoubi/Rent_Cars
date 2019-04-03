@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,8 +19,7 @@ public class SalesPerson {
 
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactsInfo contactsInfo;
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	private Agreement agreement;
+
 	
 	
 	public SalesPerson(String firstName, String secondName) {
@@ -63,27 +61,17 @@ public class SalesPerson {
 		this.contactsInfo = contactsInfo;
 	}
 
-
-	public Agreement getAgreement() {
-		return agreement;
-	}
-
-
-	public void setAgreement(Agreement agreement) {
-		this.agreement = agreement;
-	}
-
-
 	public int getId() {
 		return id;
 	}
+
+
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((agreement == null) ? 0 : agreement.hashCode());
 		result = prime * result + ((contactsInfo == null) ? 0 : contactsInfo.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
@@ -101,11 +89,6 @@ public class SalesPerson {
 		if (getClass() != obj.getClass())
 			return false;
 		SalesPerson other = (SalesPerson) obj;
-		if (agreement == null) {
-			if (other.agreement != null)
-				return false;
-		} else if (!agreement.equals(other.agreement))
-			return false;
 		if (contactsInfo == null) {
 			if (other.contactsInfo != null)
 				return false;

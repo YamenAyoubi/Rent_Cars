@@ -6,7 +6,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -21,16 +23,20 @@ public class Cars {
 
 
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+			fetch = FetchType.EAGER)
+	@JoinColumn(name = "Branch_ID")
 	private Branches branch;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private RentalPrices rentalprices;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private MoreDescriptions more_Descriptions;
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToOne(
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+			fetch = FetchType.EAGER, 
+			mappedBy = "selected_Car", 
+			orphanRemoval = true)
 	private Agreement agreement;
-	
-
 
 	public Cars(String name) {
 		super();
@@ -71,23 +77,17 @@ public class Cars {
 		this.more_Descriptions = more_Descriptions;
 	}
 
-	public Agreement getAgreement() {
-		return agreement;
-	}
-
-	public void setAgreement(Agreement agreement) {
-		this.agreement = agreement;
-	}
 
 	public int getId() {
 		return id;
 	}
 
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((agreement == null) ? 0 : agreement.hashCode());
 		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((more_Descriptions == null) ? 0 : more_Descriptions.hashCode());
@@ -105,11 +105,6 @@ public class Cars {
 		if (getClass() != obj.getClass())
 			return false;
 		Cars other = (Cars) obj;
-		if (agreement == null) {
-			if (other.agreement != null)
-				return false;
-		} else if (!agreement.equals(other.agreement))
-			return false;
 		if (branch == null) {
 			if (other.branch != null)
 				return false;

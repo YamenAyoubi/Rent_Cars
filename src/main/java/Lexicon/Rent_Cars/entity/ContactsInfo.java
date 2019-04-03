@@ -16,10 +16,6 @@ public class ContactsInfo {
 	private String address;
 	private String contactNumber;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	private Client client;
-	@OneToOne(cascade=CascadeType.ALL)
-	private SalesPerson salesPerson;
 	
 	public ContactsInfo(String address, String contactNumber) {
 		super();
@@ -47,37 +43,22 @@ public class ContactsInfo {
 		this.contactNumber = contactNumber;
 	}
 
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public SalesPerson getSalesPerson() {
-		return salesPerson;
-	}
-
-	public void setSalesPerson(SalesPerson salesPerson) {
-		this.salesPerson = salesPerson;
-	}
-
 	public int getId() {
 		return id;
 	}
+
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((client == null) ? 0 : client.hashCode());
 		result = prime * result + ((contactNumber == null) ? 0 : contactNumber.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((salesPerson == null) ? 0 : salesPerson.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -93,11 +74,6 @@ public class ContactsInfo {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (client == null) {
-			if (other.client != null)
-				return false;
-		} else if (!client.equals(other.client))
-			return false;
 		if (contactNumber == null) {
 			if (other.contactNumber != null)
 				return false;
@@ -105,13 +81,9 @@ public class ContactsInfo {
 			return false;
 		if (id != other.id)
 			return false;
-		if (salesPerson == null) {
-			if (other.salesPerson != null)
-				return false;
-		} else if (!salesPerson.equals(other.salesPerson))
-			return false;
 		return true;
 	}
+
 
 	@Override
 	public String toString() {

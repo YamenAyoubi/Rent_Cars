@@ -1,13 +1,9 @@
 package Lexicon.Rent_Cars.entity;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
 
 @Entity
 public class MoreDescriptions {
@@ -24,11 +20,6 @@ public class MoreDescriptions {
 	private boolean rented=false;
 	private String scratches;
 	
-	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	private Cars cars;
-
-
 	public MoreDescriptions(String brand, String color, String model, String size, boolean auto, String scratches) {
 		super();
 		this.brand = brand;
@@ -122,21 +113,9 @@ public class MoreDescriptions {
 		this.scratches = scratches;
 	}
 
-
-	public Cars getCars() {
-		return cars;
-	}
-
-
-	public void setCars(Cars cars) {
-		this.cars = cars;
-	}
-
-
 	public int getId() {
 		return id;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -144,7 +123,6 @@ public class MoreDescriptions {
 		int result = 1;
 		result = prime * result + (auto ? 1231 : 1237);
 		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
-		result = prime * result + ((cars == null) ? 0 : cars.hashCode());
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + (fuel ? 1231 : 1237);
 		result = prime * result + id;
@@ -171,11 +149,6 @@ public class MoreDescriptions {
 			if (other.brand != null)
 				return false;
 		} else if (!brand.equals(other.brand))
-			return false;
-		if (cars == null) {
-			if (other.cars != null)
-				return false;
-		} else if (!cars.equals(other.cars))
 			return false;
 		if (color == null) {
 			if (other.color != null)
