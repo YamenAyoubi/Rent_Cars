@@ -1,12 +1,13 @@
 package Lexicon.Rent_Cars.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
 
 
 @Entity
@@ -29,22 +30,22 @@ public class Agreement {
 
 	private int baby_chair_cost;
 	private int navigation_cost;
+	private final LocalDateTime creationDateTime;
 
 
-
-	public Agreement(int rent_period, boolean navigation, boolean baby_chair, int baby_chair_cost,
-			int navigation_cost) {
+	public Agreement(int rent_period, boolean navigation, boolean baby_chair) {
 		super();
 		this.rent_period = rent_period;
 		this.navigation = navigation;
 		this.baby_chair = baby_chair;
-		this.baby_chair_cost = baby_chair_cost;
-		this.navigation_cost = navigation_cost;
+		creationDateTime = LocalDateTime.now();
 		countCost();
 		Discount();
 	}
 
-	public Agreement() {}
+	public Agreement() {
+		creationDateTime = LocalDateTime.now();
+	}
 
 	private void countCost() {
 
@@ -158,6 +159,10 @@ public class Agreement {
 		return id;
 	}
 
+	public LocalDateTime getCreationDateTime() {
+		return creationDateTime;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -165,6 +170,7 @@ public class Agreement {
 		result = prime * result + (baby_chair ? 1231 : 1237);
 		result = prime * result + baby_chair_cost;
 		result = prime * result + ((client_Details == null) ? 0 : client_Details.hashCode());
+		result = prime * result + ((creationDateTime == null) ? 0 : creationDateTime.hashCode());
 		result = prime * result + id;
 		result = prime * result + (navigation ? 1231 : 1237);
 		result = prime * result + navigation_cost;
@@ -192,6 +198,11 @@ public class Agreement {
 			if (other.client_Details != null)
 				return false;
 		} else if (!client_Details.equals(other.client_Details))
+			return false;
+		if (creationDateTime == null) {
+			if (other.creationDateTime != null)
+				return false;
+		} else if (!creationDateTime.equals(other.creationDateTime))
 			return false;
 		if (id != other.id)
 			return false;
@@ -221,9 +232,7 @@ public class Agreement {
 		return "Agreement [id=" + id + ", rent_period=" + rent_period + ", navigation=" + navigation + ", baby_chair="
 				+ baby_chair + ", total_cost=" + total_cost + ", selected_Car=" + selected_Car + ", client_Details="
 				+ client_Details + ", sales_Person=" + sales_Person + ", baby_chair_cost=" + baby_chair_cost
-				+ ", navigation_cost=" + navigation_cost + "]";
+				+ ", navigation_cost=" + navigation_cost + ", creationDateTime=" + creationDateTime + "]";
 	}
-	
-	
 
 }
