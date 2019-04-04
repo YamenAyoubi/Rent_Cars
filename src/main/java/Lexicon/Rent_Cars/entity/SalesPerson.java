@@ -1,10 +1,13 @@
 package Lexicon.Rent_Cars.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,7 +20,10 @@ public class SalesPerson {
 	private String secondName;
 
 
-	@OneToOne(cascade=CascadeType.ALL)
+
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+	fetch = FetchType.EAGER)
+	@JoinColumn(name = "ContactsInfo_ID")
 	private ContactsInfo contactsInfo;
 
 	
@@ -64,7 +70,6 @@ public class SalesPerson {
 	public int getId() {
 		return id;
 	}
-
 
 
 

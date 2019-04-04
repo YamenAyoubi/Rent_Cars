@@ -1,8 +1,13 @@
 package Lexicon.Rent_Cars.entity;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 
 
 @Entity
@@ -19,6 +24,10 @@ public class MoreDescriptions {
 	private boolean auto;
 	private boolean rented=false;
 	private String scratches;
+		
+	
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+	private Cars car;
 	
 	public MoreDescriptions(String brand, String color, String model, String size, boolean auto, String scratches) {
 		super();
@@ -116,6 +125,19 @@ public class MoreDescriptions {
 	public int getId() {
 		return id;
 	}
+
+	
+
+
+	public Cars getCar() {
+		return car;
+	}
+
+
+	public void setCar(Cars car) {
+		this.car = car;
+	}
+
 
 	@Override
 	public int hashCode() {

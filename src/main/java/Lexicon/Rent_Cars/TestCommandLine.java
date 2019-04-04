@@ -93,11 +93,20 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_Rent_Prices=test_rentPrices_repo.save(Price1);
 		Test_Sales_Person=test_sales_repo.save(Sales1);
 		
+		
 		Test_Car.setBranch(Test_branch);
 		Test_client.setContactsInfo(Test_cont1);
 		Test_Sales_Person.setContactsInfo(Test_cont2);
 		Test_Car.setRentalprices(Test_Rent_Prices);
 		Test_Car.setMore_Descriptions(Test_Mor);
+		Test_cont1.setSalesPerson(Test_Sales_Person);
+		Test_cont2.setClient(Test_client);
+		Test_Mor.setCar(Test_Car);
+		Test_Rent_Prices.setCar(Test_Car);
+		
+		test_cars_repo.save(Test_Car);
+		
+		
 		
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);

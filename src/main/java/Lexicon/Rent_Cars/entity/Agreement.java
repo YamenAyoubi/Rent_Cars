@@ -34,6 +34,7 @@ public class Agreement {
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private SalesPerson sales_Person;
 
+	
 	private int baby_chair_cost;
 	private int navigation_cost;
 	private final LocalDateTime creationDateTime;

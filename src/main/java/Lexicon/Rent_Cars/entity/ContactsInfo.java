@@ -1,11 +1,14 @@
 package Lexicon.Rent_Cars.entity;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class ContactsInfo {
@@ -16,6 +19,16 @@ public class ContactsInfo {
 	private String address;
 	private String contactNumber;
 
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+			fetch = FetchType.EAGER, 
+			mappedBy = "contactsInfo", 
+			orphanRemoval = true)
+	private SalesPerson salesPerson;
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+			fetch = FetchType.EAGER, 
+			mappedBy = "contactsInfo", 
+			orphanRemoval = true)
+	private Client Client;
 	
 	public ContactsInfo(String address, String contactNumber) {
 		super();
@@ -49,13 +62,37 @@ public class ContactsInfo {
 
 	
 
+	public SalesPerson getSalesPerson() {
+		return salesPerson;
+	}
+
+
+	public void setSalesPerson(SalesPerson salesPerson) {
+		this.salesPerson = salesPerson;
+	}
+
+
+	public Client getClient() {
+		return Client;
+	}
+
+
+	public void setClient(Client client) {
+		Client = client;
+	}
+
+
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((Client == null) ? 0 : Client.hashCode());
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((contactNumber == null) ? 0 : contactNumber.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((salesPerson == null) ? 0 : salesPerson.hashCode());
 		return result;
 	}
 
@@ -69,6 +106,11 @@ public class ContactsInfo {
 		if (getClass() != obj.getClass())
 			return false;
 		ContactsInfo other = (ContactsInfo) obj;
+		if (Client == null) {
+			if (other.Client != null)
+				return false;
+		} else if (!Client.equals(other.Client))
+			return false;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -80,6 +122,11 @@ public class ContactsInfo {
 		} else if (!contactNumber.equals(other.contactNumber))
 			return false;
 		if (id != other.id)
+			return false;
+		if (salesPerson == null) {
+			if (other.salesPerson != null)
+				return false;
+		} else if (!salesPerson.equals(other.salesPerson))
 			return false;
 		return true;
 	}
