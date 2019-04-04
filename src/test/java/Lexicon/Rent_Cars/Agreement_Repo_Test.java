@@ -2,6 +2,7 @@ package Lexicon.Rent_Cars;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -60,16 +61,21 @@ public class Agreement_Repo_Test {
 	
 	@Before
 	public void init() {
+		
 		Branches Bra1=new Branches("Vaxjo","Vaxjo");
-		Cars car1 = new Cars("Opel");
-		Client client1=new Client("Erik","Eriksson");	
 		ContactsInfo cont1=new ContactsInfo("vaxjo", "070123456");
 		ContactsInfo cont2=new ContactsInfo("vaxjoo", "0701233356");
+		Client client1=new Client("Erik","Eriksson",cont1);	
 		MoreDescriptions  Mor1=new MoreDescriptions("Volvo","silver","2018","6 seats",true,"some scratches at front");
 		RentalPrices Price1=new RentalPrices(230);
-		SalesPerson Sales1=new SalesPerson("YAMEN", "Ayou");
+		RentalPrices Price2=new RentalPrices(160);
+		SalesPerson Sales1=new SalesPerson("YAMEN", "Ayou",cont2);
+
+		Cars car1 = new Cars("Opel",Price1,Mor1);
+		Cars car2=new Cars("Volvo",Price2,Mor1);
 
 		Test_Car=test_cars_repo.save(car1);
+		Test_Car=test_cars_repo.save(car2);
 		Test_client=test_client_repo.save(client1);
 		Test_branch=test_branch_repo.save(Bra1);
 		Test_cont1=test_cont_repo.save(cont1);
@@ -78,12 +84,15 @@ public class Agreement_Repo_Test {
 		Test_Rent_Prices=test_rentPrices_repo.save(Price1);
 		Test_Sales_Person=test_sales_repo.save(Sales1);
 		
-		Test_Car.setBranch(Test_branch);
+
 		Test_client.setContactsInfo(Test_cont1);
 		Test_Sales_Person.setContactsInfo(Test_cont2);
 		Test_Car.setRentalprices(Test_Rent_Prices);
 		Test_Car.setMore_Descriptions(Test_Mor);
-		
+		List<Cars> branchCars=new ArrayList<>();
+		branchCars.add(car1);
+		branchCars.add(car2);
+		Test_branch.setCars_Lists(branchCars);
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
 		Test_agreement2=new Agreement();

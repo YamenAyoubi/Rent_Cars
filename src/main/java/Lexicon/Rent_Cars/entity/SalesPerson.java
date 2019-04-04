@@ -21,17 +21,15 @@ public class SalesPerson {
 
 
 
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-	fetch = FetchType.EAGER)
-	@JoinColumn(name = "ContactsInfo_ID")
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private ContactsInfo contactsInfo;
 
-	
-	
-	public SalesPerson(String firstName, String secondName) {
+
+	public SalesPerson(String firstName, String secondName, ContactsInfo contactsInfo) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
+		this.contactsInfo = contactsInfo;
 	}
 
 
@@ -70,7 +68,6 @@ public class SalesPerson {
 	public int getId() {
 		return id;
 	}
-
 
 
 	@Override
@@ -117,9 +114,9 @@ public class SalesPerson {
 
 	@Override
 	public String toString() {
-		return "SalesPerson [firstName=" + firstName + ", secondName=" + secondName + ", contactsInfo="
+		return "SalesPerson [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", contactsInfo="
 				+ contactsInfo + "]";
 	}
-	
+
 }
 

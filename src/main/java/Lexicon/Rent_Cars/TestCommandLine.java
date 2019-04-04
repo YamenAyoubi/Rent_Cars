@@ -1,12 +1,10 @@
 package Lexicon.Rent_Cars;
+import java.util.ArrayList;
+import java.util.List;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import Lexicon.Rent_Cars.Services.Cars_Services_Impl;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
@@ -40,7 +38,6 @@ public class TestCommandLine implements CommandLineRunner {
 	 
 	 
 		private Agreement Test_agreement;
-		private Agreement Test_agreement2;
 		private Branches Test_branch;
 		private Cars Test_Car;
 		private Client Test_client;
@@ -66,25 +63,24 @@ public class TestCommandLine implements CommandLineRunner {
 		this.test_sales_repo = test_sales_repo;
 	}
 
-
-
-
-
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
-		
+					
 		Branches Bra1=new Branches("Vaxjo","Vaxjo");
-		Cars car1 = new Cars("Opel");
-		Client client1=new Client("Erik","Eriksson");	
 		ContactsInfo cont1=new ContactsInfo("vaxjo", "070123456");
 		ContactsInfo cont2=new ContactsInfo("vaxjoo", "0701233356");
+		Client client1=new Client("Erik","Eriksson",cont1);	
 		MoreDescriptions  Mor1=new MoreDescriptions("Volvo","silver","2018","6 seats",true,"some scratches at front");
 		RentalPrices Price1=new RentalPrices(230);
-		SalesPerson Sales1=new SalesPerson("YAMEN", "Ayou");
+		RentalPrices Price2=new RentalPrices(160);
+		SalesPerson Sales1=new SalesPerson("YAMEN", "Ayou",cont2);
 
+		Cars car1 = new Cars("Opel",Price1,Mor1);
+		Cars car2=new Cars("Volvo",Price2,Mor1);
+
+		
 		Test_Car=test_cars_repo.save(car1);
+		Test_Car=test_cars_repo.save(car2);
 		Test_client=test_client_repo.save(client1);
 		Test_branch=test_branch_repo.save(Bra1);
 		Test_cont1=test_cont_repo.save(cont1);
@@ -93,26 +89,22 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_Rent_Prices=test_rentPrices_repo.save(Price1);
 		Test_Sales_Person=test_sales_repo.save(Sales1);
 		
-		
-		Test_Car.setBranch(Test_branch);
+
 		Test_client.setContactsInfo(Test_cont1);
 		Test_Sales_Person.setContactsInfo(Test_cont2);
 		Test_Car.setRentalprices(Test_Rent_Prices);
 		Test_Car.setMore_Descriptions(Test_Mor);
-		Test_cont1.setSalesPerson(Test_Sales_Person);
-		Test_cont2.setClient(Test_client);
-		Test_Mor.setCar(Test_Car);
-		Test_Rent_Prices.setCar(Test_Car);
+		List<Cars> branchCars=new ArrayList<>();
+		branchCars.add(car1);
+		branchCars.add(car2);
+		Test_branch.setCars_Lists(branchCars);
 		
-		test_cars_repo.save(Test_Car);
-		
-		
+		List<SalesPerson> SalesPerson_List=new ArrayList<>();
+		SalesPerson_List.add(Sales1);
+		Test_branch.setSalesPersons_list(SalesPerson_List);
 		
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
-		Test_agreement2=new Agreement();
-		
-		System.out.println(Test_agreement);
 	}
 
 }

@@ -21,25 +21,16 @@ public class Cars {
 	private int id;
 	private String name;
 
-
-
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-			fetch = FetchType.EAGER)
-	@JoinColumn(name = "Branch_ID")
-	private Branches branch;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private RentalPrices rentalprices;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private MoreDescriptions more_Descriptions;
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-			fetch = FetchType.EAGER, 
-			mappedBy = "selected_Car", 
-			orphanRemoval = true)
-	private Agreement agreement;
 
-	public Cars(String name) {
+	public Cars(String name, RentalPrices rentalprices, MoreDescriptions more_Descriptions) {
 		super();
 		this.name = name;
+		this.rentalprices = rentalprices;
+		this.more_Descriptions = more_Descriptions;
 	}
 
 	public Cars() {}
@@ -50,14 +41,6 @@ public class Cars {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Branches getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branches branch) {
-		this.branch = branch;
 	}
 
 	public RentalPrices getRentalprices() {
@@ -81,13 +64,12 @@ public class Cars {
 		return id;
 	}
 
-	
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((more_Descriptions == null) ? 0 : more_Descriptions.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -104,11 +86,6 @@ public class Cars {
 		if (getClass() != obj.getClass())
 			return false;
 		Cars other = (Cars) obj;
-		if (branch == null) {
-			if (other.branch != null)
-				return false;
-		} else if (!branch.equals(other.branch))
-			return false;
 		if (id != other.id)
 			return false;
 		if (more_Descriptions == null) {
@@ -131,7 +108,7 @@ public class Cars {
 
 	@Override
 	public String toString() {
-		return "Cars [ name=" + name + ", branch=" + branch + ", rentalprices=" + rentalprices
+		return "Cars [ name=" + name  + ", rentalprices=" + rentalprices
 				+ ", more_Descriptions=" + more_Descriptions + "]";
 	}
 

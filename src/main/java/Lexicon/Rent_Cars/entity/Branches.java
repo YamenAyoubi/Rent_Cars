@@ -9,10 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-
 
 @Entity
 public class Branches {
@@ -26,12 +24,15 @@ public class Branches {
 	@OneToMany(
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
 			fetch = FetchType.EAGER, 
-			mappedBy = "branch", 
-			orphanRemoval = true
-		)
-	private List<Cars> branchCars=new ArrayList<>();
-
+			orphanRemoval = true)
+	@JoinColumn(name="Branch_ID")
+	private List<Cars> Cars_Lists=new ArrayList<>();
 	
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},orphanRemoval = true)
+	@JoinColumn(name="Branch_ID")
+	private List<SalesPerson> SalesPersons_list=new ArrayList<>();
+	
+
 	public Branches(String name, String city) {
 		super();
 		this.name = name;
@@ -39,6 +40,8 @@ public class Branches {
 	}
 
 	public Branches(){}
+
+
 
 	public String getName() {
 		return name;
@@ -56,23 +59,36 @@ public class Branches {
 		this.city = city;
 	}
 
-	public List<Cars> getBranchCars() {
-		return branchCars;
+	public List<Cars> getCars_Lists() {
+		return Cars_Lists;
 	}
 
-	public void setBranchCars(List<Cars> branchCars) {
-		this.branchCars = branchCars;
+	public void setCars_Lists(List<Cars> cars_Lists) {
+		Cars_Lists = cars_Lists;
 	}
 
+	
 	public int getId() {
 		return id;
 	}
 
+
+
+	public List<SalesPerson> getSalesPersons_list() {
+		return SalesPersons_list;
+	}
+
+	public void setSalesPersons_list(List<SalesPerson> salesPersons_list) {
+		SalesPersons_list = salesPersons_list;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((branchCars == null) ? 0 : branchCars.hashCode());
+		result = prime * result + ((Cars_Lists == null) ? 0 : Cars_Lists.hashCode());
+		result = prime * result + ((SalesPersons_list == null) ? 0 : SalesPersons_list.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -88,10 +104,15 @@ public class Branches {
 		if (getClass() != obj.getClass())
 			return false;
 		Branches other = (Branches) obj;
-		if (branchCars == null) {
-			if (other.branchCars != null)
+		if (Cars_Lists == null) {
+			if (other.Cars_Lists != null)
 				return false;
-		} else if (!branchCars.equals(other.branchCars))
+		} else if (!Cars_Lists.equals(other.Cars_Lists))
+			return false;
+		if (SalesPersons_list == null) {
+			if (other.SalesPersons_list != null)
+				return false;
+		} else if (!SalesPersons_list.equals(other.SalesPersons_list))
 			return false;
 		if (city == null) {
 			if (other.city != null)

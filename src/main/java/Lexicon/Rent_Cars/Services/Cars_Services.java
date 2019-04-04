@@ -19,4 +19,10 @@ public interface Cars_Services {
 	
 	boolean AddCarToBranch (Cars car);
 	
+	List<Cars> FindRentedCars (Cars car);
+	
+	List<Cars> FindUnRentedCars (Cars car);
+	
+	List<Cars> findByNameIgnoreCase(String name);
+	
 }

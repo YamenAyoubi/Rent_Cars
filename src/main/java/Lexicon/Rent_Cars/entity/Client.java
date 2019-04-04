@@ -20,16 +20,16 @@ public class Client {
 	private String scondName;
 
 	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-	fetch = FetchType.EAGER)
-	@JoinColumn(name = "ContactsInfo_ID")
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	private ContactsInfo contactsInfo;
 
-	
-	public Client(String firstName, String scondName) {
+
+
+	public Client(String firstName, String scondName, ContactsInfo contactsInfo) {
 		super();
 		this.firstName = firstName;
 		this.scondName = scondName;
+		this.contactsInfo = contactsInfo;
 	}
 
 	public Client() {}

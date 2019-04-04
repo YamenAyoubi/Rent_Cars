@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import Lexicon.Rent_Cars.entity.Cars;
+import Lexicon.Rent_Cars.entity.MoreDescriptions;
+import Lexicon.Rent_Cars.entity.RentalPrices;
 import Lexicon.Rent_Cars.repository.CarsRepo;
 
 @RunWith(SpringRunner.class)
@@ -27,8 +29,12 @@ public class CarsRepo_Test {
 	@Before
 	public void init() {
 		
-		Cars car1 = new Cars("Opel");
-		Cars car2 = new Cars("Volvo");
+		
+		MoreDescriptions  Mor1=new MoreDescriptions("Volvo","silver","2018","6 seats",true,"some scratches at front");
+		RentalPrices Price1=new RentalPrices(230);
+		RentalPrices Price2=new RentalPrices(160);
+		Cars car1 = new Cars("Opel",Price1,Mor1);
+		Cars car2=new Cars("Volvo",Price2,Mor1);
 		
 		TestCar=test_cars_repo.save(car1);
 		test_cars_repo.save(car2);

@@ -56,25 +56,55 @@ public class Cars_Services_Impl implements  Cars_Services{
 		return (List<Cars>) cars_Repo.findAll();
 	}
 	
+	@Override
 	public boolean AddCarToAgreement (Cars car) {
 		if (!car.getMore_Descriptions().isRented()==true) {
 			agreement.setSelected_Car(car);
+			agreement.getSelected_Car().getMore_Descriptions().setFuel(true);
 			agreement_Repo.save(agreement);
 		}else {
 			System.out.println("Unable to Add The Car Already Rented");
 		}
-		return car.getMore_Descriptions().isRented();	
+		return car.getMore_Descriptions().isRented()==true;	
 	}
 	
+	@Override
 	public boolean AddCarToBranch (Cars car) {
 		
 		List<Cars> BranchCars = new ArrayList<>();
-		branch.setBranchCars(BranchCars);
+		branch.setCars_Lists(BranchCars);
 		return BranchCars.add(car);	
 	}	
 	
+	@Override
 	public List<Cars> findByNameIgnoreCase(String name){
 		
 		return cars_Repo.findByNameIgnoreCase(name);
+	}
+	
+	@Override
+	public List<Cars> FindUnRentedCars (Cars car){
+		
+		List<Cars> Result=new ArrayList<>();
+		
+		Result.forEach(x->{
+			if (x.getMore_Descriptions().isRented()==false) {
+				System.out.println(x.getName());
+			}
+		});
+		return Result;		
+	}
+	
+	@Override
+	public List<Cars> FindRentedCars (Cars car){
+		
+		List<Cars> Result=new ArrayList<>();
+		
+		Result.forEach(x->{
+			if (x.getMore_Descriptions().isRented()==true) {
+				System.out.println(x.getName());
+			}
+		});
+		return Result;		
 	}
 }

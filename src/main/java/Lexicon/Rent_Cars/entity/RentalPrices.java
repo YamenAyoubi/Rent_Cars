@@ -19,9 +19,6 @@ public class RentalPrices {
 	private int rentPrice;
 	
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
-	private Cars car;
-
 	public RentalPrices(int rentPrice) {
 		super();
 		this.rentPrice = rentPrice;
@@ -46,24 +43,10 @@ public class RentalPrices {
 	
 	
 
-	public Cars getCar() {
-		return car;
-	}
-
-
-	public void setCar(Cars car) {
-		this.car = car;
-	}
-
-
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((car == null) ? 0 : car.hashCode());
 		result = prime * result + id;
 		result = prime * result + rentPrice;
 		return result;
@@ -79,11 +62,6 @@ public class RentalPrices {
 		if (getClass() != obj.getClass())
 			return false;
 		RentalPrices other = (RentalPrices) obj;
-		if (car == null) {
-			if (other.car != null)
-				return false;
-		} else if (!car.equals(other.car))
-			return false;
 		if (id != other.id)
 			return false;
 		if (rentPrice != other.rentPrice)
