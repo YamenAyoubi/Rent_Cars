@@ -2,6 +2,7 @@ package Lexicon.Rent_Cars.Services;
 
 import java.util.List;
 
+import Lexicon.Rent_Cars.entity.ContactsInfo;
 import Lexicon.Rent_Cars.entity.SalesPerson;
 
 public interface SalesPerson_Services {
@@ -12,8 +13,10 @@ public interface SalesPerson_Services {
 	SalesPerson Save(SalesPerson salesPerson);
 	
 	boolean Remove (int id);
+
+	boolean AddSalesPersonToBranch(SalesPerson salesPerson);
+
 	
-	void AddSalesPersonToAgreement (SalesPerson salesperson);
 	
 	}
 

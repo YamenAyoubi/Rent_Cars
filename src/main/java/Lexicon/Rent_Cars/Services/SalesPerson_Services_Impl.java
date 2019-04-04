@@ -1,14 +1,15 @@
 package Lexicon.Rent_Cars.Services;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import Lexicon.Rent_Cars.entity.Agreement;
+import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.SalesPerson;
-import Lexicon.Rent_Cars.repository.AgreementRepo;
+
 import Lexicon.Rent_Cars.repository.SalesPersonRepo;
 
 @Service
@@ -16,8 +17,8 @@ import Lexicon.Rent_Cars.repository.SalesPersonRepo;
 public class SalesPerson_Services_Impl implements SalesPerson_Services{
 
 	private SalesPersonRepo salesPerson_Repo;
-	private AgreementRepo agreement_Repo;
-	private Agreement agreement;
+	private Branches branch;
+
 	
 	@Autowired
 	public SalesPerson_Services_Impl(SalesPersonRepo salesPerson_Repo) {
@@ -43,9 +44,12 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services{
 		return salesPerson_Repo.existsById(id);
 	}
 	
-	public void AddSalesPersonToAgreement (SalesPerson salesperson) {
-		agreement.setSales_Person(salesperson);
-		agreement_Repo.save(agreement);
-	}
+	@Override
+	public boolean AddSalesPersonToBranch (SalesPerson salesPerson) {
 		
+		List<SalesPerson> SalesPerson_List = new ArrayList<>();
+		branch.setSalesPersons_list(SalesPerson_List);
+		
+		return SalesPerson_List.add(salesPerson);	
+	}
 }

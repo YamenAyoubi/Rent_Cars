@@ -3,6 +3,8 @@ package Lexicon.Rent_Cars.Services;
 import java.util.List;
 
 import Lexicon.Rent_Cars.entity.Agreement;
+import Lexicon.Rent_Cars.entity.Client;
+import Lexicon.Rent_Cars.entity.SalesPerson;
 
 
 public interface Agreement_Services {
@@ -12,8 +14,11 @@ public interface Agreement_Services {
 	
 	List<Agreement> findAll();
 	
-	Agreement save(Agreement agreement);
-	
 	boolean remove(int id);
+
+	Agreement CreatAgreement(Agreement agreement);
 	
+	Agreement AddClientToAgreement (Client client);
+
+	Agreement AddSalesPersonToAgreement(SalesPerson salesPerson);
 }

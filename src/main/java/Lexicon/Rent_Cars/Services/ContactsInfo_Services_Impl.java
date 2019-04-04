@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import Lexicon.Rent_Cars.entity.Client;
 import Lexicon.Rent_Cars.entity.ContactsInfo;
 import Lexicon.Rent_Cars.entity.SalesPerson;
-import Lexicon.Rent_Cars.repository.CarsRepo;
 import Lexicon.Rent_Cars.repository.ClientsRepo;
 import Lexicon.Rent_Cars.repository.ContactInfoRepo;
 import Lexicon.Rent_Cars.repository.SalesPersonRepo;

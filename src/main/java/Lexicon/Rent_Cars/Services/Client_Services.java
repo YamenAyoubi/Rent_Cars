@@ -11,5 +11,5 @@ public interface Client_Services {
 	
 	List<Client> findAll();
 	
-	void AddClientToAgreement (Client client);
+
 }

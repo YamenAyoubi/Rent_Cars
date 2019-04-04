@@ -2,6 +2,8 @@ package Lexicon.Rent_Cars.Services;
 
 import java.util.List;
 import Lexicon.Rent_Cars.entity.Cars;
+import Lexicon.Rent_Cars.entity.MoreDescriptions;
+import Lexicon.Rent_Cars.entity.RentalPrices;
 
 
 
@@ -24,5 +26,9 @@ public interface Cars_Services {
 	List<Cars> FindUnRentedCars (Cars car);
 	
 	List<Cars> findByNameIgnoreCase(String name);
+
+	Cars AddPricesToCar(RentalPrices rentalPrices);
+
+	Cars AddDesToCar(MoreDescriptions moreDescriptions);
 	
 }

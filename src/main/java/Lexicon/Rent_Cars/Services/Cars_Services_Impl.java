@@ -1,15 +1,14 @@
 package Lexicon.Rent_Cars.Services;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
+import Lexicon.Rent_Cars.entity.MoreDescriptions;
+import Lexicon.Rent_Cars.entity.RentalPrices;
 import Lexicon.Rent_Cars.repository.AgreementRepo;
 import Lexicon.Rent_Cars.repository.CarsRepo;
 
@@ -32,11 +31,7 @@ public class Cars_Services_Impl implements  Cars_Services{
 
 	@Override
 	public Cars findById(int id) {
-		Optional<Cars> Result = cars_Repo.findById(id);
-		if (Result.isPresent()) {
-			return Result.get();
-		}
-		return null;
+		return cars_Repo.findById(id).orElseThrow(IllegalArgumentException::new);
 	}
 	
 	@Override
@@ -52,7 +47,6 @@ public class Cars_Services_Impl implements  Cars_Services{
 
 	@Override
 	public List<Cars> findAll() {
-		
 		return (List<Cars>) cars_Repo.findAll();
 	}
 	
@@ -106,5 +100,18 @@ public class Cars_Services_Impl implements  Cars_Services{
 			}
 		});
 		return Result;		
+	}
+	@Override
+	public Cars AddPricesToCar(RentalPrices rentalPrices) {
+		Cars car = new Cars();
+		car.setRentalprices(rentalPrices);
+		return save(car);
+	}
+	
+	@Override
+	public Cars AddDesToCar(MoreDescriptions moreDescriptions) {
+		Cars car = new Cars();
+		car.setMore_Descriptions(moreDescriptions);
+		return save(car);	
 	}
 }

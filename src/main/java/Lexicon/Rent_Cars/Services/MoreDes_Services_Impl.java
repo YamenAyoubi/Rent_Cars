@@ -2,7 +2,6 @@ package Lexicon.Rent_Cars.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import Lexicon.Rent_Cars.entity.Cars;
 import Lexicon.Rent_Cars.entity.MoreDescriptions;
 import Lexicon.Rent_Cars.repository.MoreDescriptionsRepo;
