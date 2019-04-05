@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import Lexicon.Rent_Cars.Services.Cars_Services_Impl;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
@@ -46,6 +48,8 @@ public class TestCommandLine implements CommandLineRunner {
 		private MoreDescriptions Test_Mor;
 		private RentalPrices Test_Rent_Prices;
 		private SalesPerson Test_Sales_Person;
+		
+		Cars_Services_Impl impl;
 	
 	
 	
@@ -99,12 +103,16 @@ public class TestCommandLine implements CommandLineRunner {
 		branchCars.add(car2);
 		Test_branch.setCars_Lists(branchCars);
 		
+		
 		List<SalesPerson> SalesPerson_List=new ArrayList<>();
 		SalesPerson_List.add(Sales1);
 		Test_branch.setSalesPersons_list(SalesPerson_List);
 		
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
+		
+		System.out.println(Test_agreement);
+		
 	}
 
 }

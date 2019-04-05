@@ -35,9 +35,9 @@ public class CarsRepo_Test {
 		RentalPrices Price2=new RentalPrices(160);
 		Cars car1 = new Cars("Opel",Price1,Mor1);
 		Cars car2=new Cars("Volvo",Price2,Mor1);
-		
+		car1.setRentalprices(Price1);
 		TestCar=test_cars_repo.save(car1);
-		test_cars_repo.save(car2);
+		
 		
 	}
 	
@@ -47,4 +47,11 @@ public class CarsRepo_Test {
 	List<Cars> actual = test_cars_repo.findByNameIgnoreCase("oPEL");
 	assertEquals(expected, actual);
 	}
+	
+//	@Test
+//	public void test_findByRentalprices() {
+//		List<Cars> expected =Arrays.asList(TestCar);
+//		List<Cars> actual = test_cars_repo.findByrentalprices(230);
+//	assertEquals(expected, actual);
+//	}
 }

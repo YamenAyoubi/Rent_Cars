@@ -7,6 +7,7 @@ import Lexicon.Rent_Cars.entity.Cars;
 
 public interface CarsRepo extends CrudRepository<Cars, Integer> {
 
+	
 	List<Cars> findByNameIgnoreCase(String name);
-
+		
 }

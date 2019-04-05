@@ -114,4 +114,17 @@ public class Cars_Services_Impl implements  Cars_Services{
 		car.setMore_Descriptions(moreDescriptions);
 		return save(car);	
 	}
+	
+	@Override
+	public List<Cars> findByRentalprices(int rentalprices) {
+		
+		List<Cars> Result=new ArrayList<>();
+		
+		Result.forEach(x->{
+			if (x.getRentalprices().getRentPrice()==rentalprices) {
+				System.out.println(x.getName());
+			}
+		});
+		return Result;
+	}
 }

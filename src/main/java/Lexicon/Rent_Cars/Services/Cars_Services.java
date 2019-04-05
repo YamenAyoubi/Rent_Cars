@@ -31,4 +31,5 @@ public interface Cars_Services {
 
 	Cars AddDesToCar(MoreDescriptions moreDescriptions);
 	
+	List<Cars> findByRentalprices(int rentalprices);
 }
