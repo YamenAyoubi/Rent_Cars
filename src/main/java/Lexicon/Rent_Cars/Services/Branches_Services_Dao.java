@@ -4,7 +4,7 @@ import java.util.List;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.SalesPerson;
 
-public interface Branches_Services {
+public interface Branches_Services_Dao {
 
 	Branches save(Branches branch);
 	

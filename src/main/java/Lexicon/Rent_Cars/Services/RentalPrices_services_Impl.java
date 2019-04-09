@@ -1,7 +1,5 @@
 package Lexicon.Rent_Cars.Services;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,7 @@ import Lexicon.Rent_Cars.repository.RentalPricesRepo;
 
 @Service
 @Transactional
-public class RentalPrices_services_Impl implements RentalPrices_services{
+public class RentalPrices_services_Impl implements RentalPrices_services_Dao{
 
 	
 	private RentalPricesRepo rentalPrices_repo;

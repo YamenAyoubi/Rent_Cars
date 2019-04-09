@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import Lexicon.Rent_Cars.Services.Agreement_Service_Impl;
 import Lexicon.Rent_Cars.Services.Cars_Services_Impl;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
@@ -69,7 +70,7 @@ public class TestCommandLine implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-					
+			
 		Branches Bra1=new Branches("Vaxjo","Vaxjo");
 		ContactsInfo cont1=new ContactsInfo("vaxjo", "070123456");
 		ContactsInfo cont2=new ContactsInfo("vaxjoo", "0701233356");
@@ -93,7 +94,7 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_Rent_Prices=test_rentPrices_repo.save(Price1);
 		Test_Sales_Person=test_sales_repo.save(Sales1);
 		
-
+		
 		Test_client.setContactsInfo(Test_cont1);
 		Test_Sales_Person.setContactsInfo(Test_cont2);
 		Test_Car.setRentalprices(Test_Rent_Prices);
@@ -111,6 +112,7 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
 		
+
 		System.out.println(Test_agreement);
 		
 	}

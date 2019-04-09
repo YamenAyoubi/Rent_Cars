@@ -1,8 +1,11 @@
 package Lexicon.Rent_Cars.entity;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 
@@ -15,7 +18,7 @@ public class RentalPrices {
 	private int id;
 	private int rentPrice;
 	
-
+	
 	public RentalPrices(int rentPrice) {
 		super();
 		this.rentPrice = rentPrice;
@@ -37,7 +40,6 @@ public class RentalPrices {
 	public int getId() {
 		return id;
 	}
-	
 	
 
 	@Override
@@ -72,7 +74,4 @@ public class RentalPrices {
 		return "RentalPrices [rentPrice=" + rentPrice + "]";
 	}
 
-	
-
-	
 }

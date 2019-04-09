@@ -3,7 +3,7 @@ package Lexicon.Rent_Cars.Services;
 import java.util.List;
 import Lexicon.Rent_Cars.entity.Client;
 
-public interface Client_Services {
+public interface Client_Services_Dao {
 
 	Client save(Client client);
 	

@@ -14,7 +14,7 @@ import Lexicon.Rent_Cars.repository.SalesPersonRepo;
 
 @Service
 @Transactional
-public class ContactsInfo_Services_Impl implements ContactsInfo_Services{
+public class ContactsInfo_Services_Impl implements ContactsInfo_Services_Dao{
 	
 	private ContactInfoRepo contactsinfo_repo;
 	private ClientsRepo client_repo;

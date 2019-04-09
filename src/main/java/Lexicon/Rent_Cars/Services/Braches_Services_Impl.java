@@ -8,10 +8,10 @@ import Lexicon.Rent_Cars.repository.BranchesRepo;
 
 @Service
 @Transactional
-public class Braches_Services_Impl implements Branches_Services{
+public class Braches_Services_Impl implements Branches_Services_Dao{
 
 	private BranchesRepo branch_Repo;
-	private Branches branch;
+	
 	
 	@Autowired
 	public Braches_Services_Impl(BranchesRepo branch_Repo) {

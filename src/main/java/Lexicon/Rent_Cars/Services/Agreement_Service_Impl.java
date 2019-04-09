@@ -1,4 +1,5 @@
 package Lexicon.Rent_Cars.Services;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import Lexicon.Rent_Cars.repository.AgreementRepo;
 
 @Service
 @Transactional
-public class Agreement_Service_Impl implements Agreement_Services{
+public class Agreement_Service_Impl implements Agreement_Services_Dao{
 	
 	
 	private AgreementRepo agreement_Repo;
@@ -68,6 +69,17 @@ public class Agreement_Service_Impl implements Agreement_Services{
 		}
 		
 		return CreatAgreement(agreement);	
+	}
+	
+	public List<Agreement> FindByRentPeriod (int rent_period){
+		
+		List<Agreement> Result = new ArrayList<>();
+		
+		Result.forEach(x-> {if (x.getRent_period()==rent_period) {
+			System.out.println(x.getId());
+			}
+		});
+		return Result;
 	}
 	
 }

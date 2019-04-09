@@ -8,7 +8,7 @@ import Lexicon.Rent_Cars.repository.MoreDescriptionsRepo;
 
 @Service
 @Transactional
-public class MoreDes_Services_Impl implements MoreDes_Services{
+public class MoreDes_Services_Impl implements MoreDes_Services_Dao{
 
 	private MoreDescriptionsRepo MoreDes_repo;
 	private Cars car;

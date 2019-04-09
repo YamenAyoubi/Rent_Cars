@@ -2,8 +2,11 @@ package Lexicon.Rent_Cars;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,11 +37,13 @@ public class CarsRepo_Test {
 		RentalPrices Price1=new RentalPrices(230);
 		RentalPrices Price2=new RentalPrices(160);
 		Cars car1 = new Cars("Opel",Price1,Mor1);
-		Cars car2=new Cars("Volvo",Price2,Mor1);
+//		Cars car2=new Cars("Volvo",Price2,Mor1);
 		car1.setRentalprices(Price1);
 		TestCar=test_cars_repo.save(car1);
-		
-		
+//		TestCar=test_cars_repo.save(car2);
+		List<Cars> resultList = new ArrayList<>();
+//		resultList.add(car2);
+		resultList.add(car1);
 	}
 	
 	@Test
@@ -48,10 +53,11 @@ public class CarsRepo_Test {
 	assertEquals(expected, actual);
 	}
 	
-//	@Test
-//	public void test_findByRentalprices() {
-//		List<Cars> expected =Arrays.asList(TestCar);
-//		List<Cars> actual = test_cars_repo.findByrentalprices(230);
-//	assertEquals(expected, actual);
-//	}
+	@Test
+	public void test_findByid() {
+		Cars expected = TestCar;
+		Optional<Cars > actual =  test_cars_repo.findById(1);
+	assertEquals(expected, actual.get());
+	
+	}
 }

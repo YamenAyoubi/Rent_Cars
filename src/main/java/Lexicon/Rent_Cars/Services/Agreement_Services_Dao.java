@@ -7,7 +7,7 @@ import Lexicon.Rent_Cars.entity.Client;
 import Lexicon.Rent_Cars.entity.SalesPerson;
 
 
-public interface Agreement_Services {
+public interface Agreement_Services_Dao {
 
 	
 	Agreement findById(int id);
@@ -21,4 +21,6 @@ public interface Agreement_Services {
 	Agreement AddClientToAgreement (Client client);
 
 	Agreement AddSalesPersonToAgreement(SalesPerson salesPerson);
+	
+	List<Agreement> FindByRentPeriod (int rent_period);
 }

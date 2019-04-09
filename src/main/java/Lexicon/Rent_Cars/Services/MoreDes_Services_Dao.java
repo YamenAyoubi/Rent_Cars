@@ -2,7 +2,7 @@ package Lexicon.Rent_Cars.Services;
 
 import Lexicon.Rent_Cars.entity.MoreDescriptions;
 
-public interface MoreDes_Services {
+public interface MoreDes_Services_Dao {
 	
 	MoreDescriptions Save(MoreDescriptions MoreDes);
 	

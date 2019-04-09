@@ -5,7 +5,7 @@ import java.util.List;
 import Lexicon.Rent_Cars.entity.ContactsInfo;
 
 
-public interface ContactsInfo_Services {
+public interface ContactsInfo_Services_Dao {
 	
 	
 	List<ContactsInfo> FindAll();

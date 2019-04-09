@@ -10,7 +10,7 @@ import Lexicon.Rent_Cars.repository.ClientsRepo;
 
 @Service
 @Transactional
-public class Client_Services_Impl implements Client_Services{
+public class Client_Services_Impl implements Client_Services_Dao{
 
 	private ClientsRepo client_Repo;
 

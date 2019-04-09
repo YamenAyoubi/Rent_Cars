@@ -16,7 +16,7 @@ import Lexicon.Rent_Cars.repository.CarsRepo;
 
 @Service
 @Transactional
-public class Cars_Services_Impl implements  Cars_Services{
+public class Cars_Services_Impl implements  Cars_Services_Dao{
 	
 	private CarsRepo cars_Repo;
 	private AgreementRepo agreement_Repo;

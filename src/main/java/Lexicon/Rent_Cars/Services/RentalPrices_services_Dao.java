@@ -4,7 +4,7 @@ import java.util.List;
 import Lexicon.Rent_Cars.entity.Cars;
 import Lexicon.Rent_Cars.entity.RentalPrices;
 
-public interface RentalPrices_services {
+public interface RentalPrices_services_Dao {
 	
 	RentalPrices Save(RentalPrices rentalPrices);
 	

@@ -7,7 +7,7 @@ import Lexicon.Rent_Cars.entity.RentalPrices;
 
 
 
-public interface Cars_Services {
+public interface Cars_Services_Dao {
 	
 	Cars findById(int id);
 	
