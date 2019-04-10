@@ -17,9 +17,8 @@ public class Agreement_Service_Impl implements Agreement_Services_Dao{
 	
 	
 	private AgreementRepo agreement_Repo;
-	private Agreement agreement;
-	
 
+	
 	@Autowired
 	public Agreement_Service_Impl(AgreementRepo agreement_Repo) {
 		super();
@@ -47,7 +46,7 @@ public class Agreement_Service_Impl implements Agreement_Services_Dao{
 		return agreement_Repo.existsById(id);
 	}
 	@Override
-	public Agreement AddClientToAgreement (Client client) {
+	public Agreement AddClientToAgreement (Agreement agreement ,Client client) {
 	
 		if (agreement.getClient_Details()==null) {
 			agreement.setClient_Details(client);
@@ -59,7 +58,7 @@ public class Agreement_Service_Impl implements Agreement_Services_Dao{
 		return CreatAgreement(agreement);	
 	}
 	@Override
-	public Agreement AddSalesPersonToAgreement (SalesPerson salesPerson) {
+	public Agreement AddSalesPersonToAgreement (Agreement agreement ,SalesPerson salesPerson) {
 	
 		if (agreement.getSales_Person()==null) {
 			agreement.setSales_Person(salesPerson);

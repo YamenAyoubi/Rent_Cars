@@ -23,9 +23,6 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services_Dao {
 	private ClientsRepo client_Repo;
 	private ContactInfoRepo contactsinfo_repo;
 	private BranchesRepo branch_Repo;
-	private Client client;
-	private SalesPerson sales_person;
-	private Branches branch;
 
 	@Autowired
 	public SalesPerson_Services_Impl(SalesPersonRepo salesPerson_Repo, ClientsRepo client_Repo,
@@ -38,29 +35,43 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services_Dao {
 	}
 
 	@Override
-	public List<SalesPerson> FindAll() {
+	public Client findById_client(int id) {
+		return client_Repo.findById(id).orElseThrow(IllegalArgumentException::new);
+	}
+
+	@Override
+	public List<SalesPerson> FindAll_SalesPerson() {
 
 		return (List<SalesPerson>) salesPerson_Repo.findAll();
 	}
 
 	@Override
-	public SalesPerson Save(SalesPerson salesPerson) {
+	public SalesPerson findById_SalesPerson(int id) {
+		return salesPerson_Repo.findById(id).orElseThrow(IllegalArgumentException::new);
+	}
 
+	@Override
+	public Branches findById_Branch(int id) {
+		return branch_Repo.findById(id).orElseThrow(IllegalArgumentException::new);
+	}
+
+	@Override
+	public SalesPerson Save_SalesPerson(SalesPerson salesPerson) {
 		return salesPerson_Repo.save(salesPerson);
 	}
 
 	@Override
-	public boolean Remove(int id) {
+	public boolean Remove_SalesPerson(int id) {
 		salesPerson_Repo.deleteById(id);
 		return salesPerson_Repo.existsById(id);
 	}
 
 	@Override
-	public boolean AddSalesPersonToBranch(SalesPerson salesPerson) {
+	public boolean AddSalesPersonToBranch(SalesPerson salesPerson, int id) {
 
 		List<SalesPerson> SalesPerson_List = new ArrayList<>();
-		branch.setSalesPersons_list(SalesPerson_List);
-
+		Branches selected_Branch = findById_Branch(id);
+		selected_Branch.setSalesPersons_list(SalesPerson_List);
 		return SalesPerson_List.add(salesPerson);
 	}
 
@@ -102,15 +113,19 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services_Dao {
 	}
 
 	@Override
-	public void AddContactInfoToClient(ContactsInfo contactsInfo) {
-		client.setContactsInfo(contactsInfo);
-		client_Repo.save(client);
+	public void AddContactInfoToClient(ContactsInfo contactsInfo, int id) {
+
+		Client selected_client = findById_client(id);
+		selected_client.setContactsInfo(contactsInfo);
+		client_Repo.save(selected_client);
 	}
 
 	@Override
-	public void AddContactInfoToSalesPerson(ContactsInfo contactsInfo) {
-		sales_person.setContactsInfo(contactsInfo);
-		salesPerson_Repo.save(sales_person);
+	public void AddContactInfoToSalesPerson(ContactsInfo contactsInfo, int id) {
+
+		SalesPerson selected_SalesPerson = findById_SalesPerson(id);
+		selected_SalesPerson.setContactsInfo(contactsInfo);
+		salesPerson_Repo.save(selected_SalesPerson);
 	}
 
 	@Override

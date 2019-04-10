@@ -18,9 +18,9 @@ public interface Agreement_Services_Dao {
 
 	Agreement CreatAgreement(Agreement agreement);
 	
-	Agreement AddClientToAgreement (Client client);
+	Agreement AddClientToAgreement (Agreement agreement ,Client client);
 
-	Agreement AddSalesPersonToAgreement(SalesPerson salesPerson);
+	Agreement AddSalesPersonToAgreement(Agreement agreement ,SalesPerson salesPerson);
 	
 	List<Agreement> FindByRentPeriod (int rent_period);
 }

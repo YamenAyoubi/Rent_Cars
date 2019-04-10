@@ -23,9 +23,7 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	private AgreementRepo agreement_Repo;
 	private MoreDescriptionsRepo MoreDes_repo;
 	private RentalPricesRepo rentalPrices_repo;
-	private Agreement agreement;
-	private Branches branch;
-	private Cars car;
+
 
 	@Autowired
 	public Cars_Services_Impl(CarsRepo cars_Repo, AgreementRepo agreement_Repo, MoreDescriptionsRepo moreDes_repo,
@@ -38,28 +36,28 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public Cars findById(int id) {
+	public Cars findById_Car(int id) {
 		return cars_Repo.findById(id).orElseThrow(IllegalArgumentException::new);
 	}
 
 	@Override
-	public Cars save(Cars car) {
+	public Cars save_Car(Cars car) {
 		return cars_Repo.save(car);
 	}
 
 	@Override
-	public boolean remove(int id) {
+	public boolean remove_Car(int id) {
 		cars_Repo.deleteById(id);
 		return cars_Repo.existsById(id);
 	}
 
 	@Override
-	public List<Cars> findAll() {
+	public List<Cars> findAll_Cars() {
 		return (List<Cars>) cars_Repo.findAll();
 	}
 
 	@Override
-	public boolean AddCarToAgreement(Cars car) {
+	public boolean AddCarToAgreement(Agreement agreement ,Cars car) {
 		if (!car.getMore_Descriptions().isRented() == true) {
 			agreement.setSelected_Car(car);
 			agreement.getSelected_Car().getMore_Descriptions().setFuel(true);
@@ -71,8 +69,7 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public boolean AddCarToBranch(Cars car) {
-
+	public boolean AddCarToBranch(Cars car , Branches branch) {
 		List<Cars> BranchCars = new ArrayList<>();
 		branch.setCars_Lists(BranchCars);
 		return BranchCars.add(car);
@@ -111,17 +108,18 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public Cars AddPricesToCar(RentalPrices rentalPrices) {
-		Cars car = new Cars();
-		car.setRentalprices(rentalPrices);
-		return save(car);
+	public Cars Add_Rentalprice_ToCar(RentalPrices rentalPrices,int id) {
+		Cars selected_car =  findById_Car(id);
+		selected_car.setRentalprices(rentalPrices);
+		return save_Car(selected_car);
 	}
 
 	@Override
-	public Cars AddDesToCar(MoreDescriptions moreDescriptions) {
-		Cars car = new Cars();
-		car.setMore_Descriptions(moreDescriptions);
-		return save(car);
+	public Cars Add_MoreDescriptions_ToCar(MoreDescriptions moreDescriptions,int id) {
+		Cars selected_car =  findById_Car(id);
+		selected_car.setMore_Descriptions(moreDescriptions);
+		return save_Car(selected_car);
+	
 	}
 
 	@Override
@@ -150,14 +148,7 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public void AddMoreInfoToCars(MoreDescriptions MoreDes) {
-		car.setMore_Descriptions(MoreDes);
-
-	}
-
-	@Override
 	public RentalPrices Save_Rent_Price(RentalPrices rentalPrices) {
-
 		return rentalPrices_repo.save(rentalPrices);
 	}
 
@@ -166,11 +157,4 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 		rentalPrices_repo.deleteById(id);
 		return rentalPrices_repo.existsById(id);
 	}
-
-	@Override
-	public void AddRentPricesToCars(RentalPrices rentalPrices) {
-		car.setRentalprices(rentalPrices);
-		cars_Repo.save(car);
-	}
-
 }

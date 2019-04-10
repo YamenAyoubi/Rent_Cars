@@ -9,13 +9,13 @@ import Lexicon.Rent_Cars.entity.SalesPerson;
 
 public interface SalesPerson_Services_Dao {
 
-	List<SalesPerson> FindAll();
+	List<SalesPerson> FindAll_SalesPerson();
 
-	SalesPerson Save(SalesPerson salesPerson);
+	SalesPerson Save_SalesPerson(SalesPerson salesPerson);
 
-	boolean Remove(int id);
+	boolean Remove_SalesPerson(int id);
 
-	boolean AddSalesPersonToBranch(SalesPerson salesPerson);
+	boolean AddSalesPersonToBranch(SalesPerson salesPerson,int id);
 
 	Client save_Client(Client client);
 
@@ -29,14 +29,20 @@ public interface SalesPerson_Services_Dao {
 
 	boolean Remove_Contact(int id);
 
-	void AddContactInfoToClient(ContactsInfo contactsInfo);
+	void AddContactInfoToClient(ContactsInfo contactsInfo,int id);
 
-	void AddContactInfoToSalesPerson(ContactsInfo contactsInfo);
+	void AddContactInfoToSalesPerson(ContactsInfo contactsInfo,int id);
 
 	Branches save_Branch(Branches branch);
 
 	boolean remove_Branch(int id);
 
 	List<Branches> findAll_Branches();
+
+	Client findById_client(int id);
+
+	SalesPerson findById_SalesPerson(int id);
+
+	Branches findById_Branch(int id);
 
 }
