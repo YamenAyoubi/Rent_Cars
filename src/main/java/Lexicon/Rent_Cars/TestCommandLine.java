@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import Lexicon.Rent_Cars.Services.Agreement_Service_Impl;
-import Lexicon.Rent_Cars.Services.Cars_Services_Impl;
+import Lexicon.Rent_Cars.Services.Cars_Services_Dao;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
@@ -50,7 +50,7 @@ public class TestCommandLine implements CommandLineRunner {
 		private RentalPrices Test_Rent_Prices;
 		private SalesPerson Test_Sales_Person;
 		
-		Cars_Services_Impl impl;
+		Cars_Services_Dao impl;
 	
 	
 	
