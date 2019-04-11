@@ -41,7 +41,7 @@ public class Agreement_Service_Impl implements Agreement_Services_Dao{
 	}
 
 	@Override
-	public Agreement CreatAgreement(Agreement agreement) {
+	public Agreement save_Agreement(Agreement agreement) {
 		return agreement_Repo.save(agreement);
 	}
 
@@ -60,7 +60,7 @@ public class Agreement_Service_Impl implements Agreement_Services_Dao{
 		}else {
 			System.out.println("Agreement Has Valid Client");
 		}
-		return CreatAgreement(selected_agreement);	
+		return save_Agreement(selected_agreement);	
 	}
 	@Override
 	public Agreement AddSalesPersonToAgreement (int agreement_id ,int salesPerson_id) {
@@ -73,7 +73,7 @@ public class Agreement_Service_Impl implements Agreement_Services_Dao{
 			System.out.println("Agreement Has Valid Sales Person");
 		}
 		
-		return CreatAgreement(selected_agreement);	
+		return save_Agreement(selected_agreement);	
 	}
 	
 	public List<Agreement> FindByRentPeriod (int rent_period){

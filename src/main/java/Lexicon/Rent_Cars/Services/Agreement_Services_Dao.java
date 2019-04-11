@@ -16,7 +16,7 @@ public interface Agreement_Services_Dao {
 	
 	boolean remove(int id);
 
-	Agreement CreatAgreement(Agreement agreement);
+	Agreement save_Agreement(Agreement agreement);
 	
 	Agreement AddClientToAgreement (int agreement_id ,int client_id);
 
