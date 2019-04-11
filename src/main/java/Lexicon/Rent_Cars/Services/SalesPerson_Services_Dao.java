@@ -15,7 +15,7 @@ public interface SalesPerson_Services_Dao {
 
 	boolean Remove_SalesPerson(int id);
 
-	boolean AddSalesPersonToBranch(SalesPerson salesPerson,int id);
+	boolean AddSalesPersonToBranch(int salesPerson_id, int branche_id);
 
 	Client save_Client(Client client);
 
@@ -29,9 +29,9 @@ public interface SalesPerson_Services_Dao {
 
 	boolean Remove_Contact(int id);
 
-	void AddContactInfoToClient(ContactsInfo contactsInfo,int id);
+	void  AddContactInfoToClient(int contactsInfo_id, int client_id);
 
-	void AddContactInfoToSalesPerson(ContactsInfo contactsInfo,int id);
+	void AddContactInfoToSalesPerson(int contactsInfo_id, int salesPerson_id);
 
 	Branches save_Branch(Branches branch);
 
@@ -44,5 +44,10 @@ public interface SalesPerson_Services_Dao {
 	SalesPerson findById_SalesPerson(int id);
 
 	Branches findById_Branch(int id);
+	
+	Branches sales_persons_List_atbranch(Branches branch);
 
+	ContactsInfo findById_Contact(int id);
+
+	
 }

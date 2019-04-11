@@ -18,19 +18,19 @@ public interface Cars_Services_Dao {
 
 	List<Cars> findAll_Cars();
 
-	boolean AddCarToAgreement(Agreement agreement ,Cars car);
+	boolean AddCarToAgreement(int agreement_id ,int car_id);
 
-	boolean AddCarToBranch(Cars car,Branches branch);
+	boolean AddCarToBranch(int car_id , int branch_id);
 
-	List<Cars> findByNameIgnoreCase(String name);
+	List<Cars> findByNameIgnoreCase_car(String name);
 
-	List<Cars> FindUnRentedCars(Cars car);
+	List<Cars> FindUnRentedCars();
 
-	List<Cars> FindRentedCars(Cars car);
+	List<Cars> FindRentedCars();
 
-	Cars Add_Rentalprice_ToCar(RentalPrices rentalPrices,int id);
+	Cars Add_Rentalprice_ToCar(int rentalPrices_id,int car_id);
 
-	Cars Add_MoreDescriptions_ToCar(MoreDescriptions moreDescriptions,int id);
+	Cars Add_MoreDescriptions_ToCar(int moreDescriptions_id,int id);
 
 	List<Cars> findByRentalprices(int rentalprices);
 
@@ -42,6 +42,13 @@ public interface Cars_Services_Dao {
 
 	boolean Remove_Rent_Price(int id);
 
+	RentalPrices findById_rentalPrice(int id);
 
-
+	List<RentalPrices> findAll_rentalPrice();
+	
+	MoreDescriptions findById_moreDes(int id);
+	
+	 List<MoreDescriptions> findAll__moreDes();
+	 
+	 void agreement_finished_CarBoolean(int agreement_id);
 }

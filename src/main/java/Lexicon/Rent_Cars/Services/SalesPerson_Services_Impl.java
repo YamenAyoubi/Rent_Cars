@@ -1,8 +1,7 @@
 package Lexicon.Rent_Cars.Services;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,12 +66,11 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services_Dao {
 	}
 
 	@Override
-	public boolean AddSalesPersonToBranch(SalesPerson salesPerson, int id) {
+	public boolean AddSalesPersonToBranch(int salesPerson_id, int branche_id) {
 
-		List<SalesPerson> SalesPerson_List = new ArrayList<>();
-		Branches selected_Branch = findById_Branch(id);
-		selected_Branch.setSalesPersons_list(SalesPerson_List);
-		return SalesPerson_List.add(salesPerson);
+		SalesPerson selected_SalesPerson = findById_SalesPerson(salesPerson_id);
+		Branches selected_Branch = findById_Branch(branche_id);
+		return selected_Branch.getSalesPersons_list().add(selected_SalesPerson);
 	}
 
 	@Override
@@ -108,23 +106,29 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services_Dao {
 	@Override
 	public boolean Remove_Contact(int id) {
 		contactsinfo_repo.deleteById(id);
-		;
 		return contactsinfo_repo.existsById(id);
 	}
 
 	@Override
-	public void AddContactInfoToClient(ContactsInfo contactsInfo, int id) {
+	public ContactsInfo findById_Contact(int id) {
+		return contactsinfo_repo.findById(id).orElseThrow(IllegalArgumentException::new);
+	}
 
-		Client selected_client = findById_client(id);
-		selected_client.setContactsInfo(contactsInfo);
+	@Override
+	public void AddContactInfoToClient(int contactsInfo_id, int client_id) {
+
+		Client selected_client = findById_client(client_id);
+		ContactsInfo selected_Contact = findById_Contact(contactsInfo_id);
+		selected_client.setContactsInfo(selected_Contact);
 		client_Repo.save(selected_client);
 	}
 
 	@Override
-	public void AddContactInfoToSalesPerson(ContactsInfo contactsInfo, int id) {
+	public void AddContactInfoToSalesPerson(int contactsInfo_id, int salesPerson_id) {
 
-		SalesPerson selected_SalesPerson = findById_SalesPerson(id);
-		selected_SalesPerson.setContactsInfo(contactsInfo);
+		SalesPerson selected_SalesPerson = findById_SalesPerson(salesPerson_id);
+		ContactsInfo selected_Contact = findById_Contact(contactsInfo_id);
+		selected_SalesPerson.setContactsInfo(selected_Contact);
 		salesPerson_Repo.save(selected_SalesPerson);
 	}
 
@@ -143,6 +147,13 @@ public class SalesPerson_Services_Impl implements SalesPerson_Services_Dao {
 	@Override
 	public List<Branches> findAll_Branches() {
 		return (List<Branches>) branch_Repo.findAll();
+	}
+
+	@Override
+	public Branches sales_persons_List_atbranch(Branches branch) {
+		List<SalesPerson> SalesPerson_List = branch.getSalesPersons_list();
+		System.out.println(SalesPerson_List);
+		return branch;
 	}
 
 }
