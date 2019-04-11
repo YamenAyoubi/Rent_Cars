@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Lexicon.Rent_Cars.Services.SalesPerson_Services_Dao;
 import Lexicon.Rent_Cars.entity.Client;
+import Lexicon.Rent_Cars.entity.SalesPerson;
 
 @RestController
 @RequestMapping("/myapp/api")
@@ -49,5 +50,27 @@ public class SalesPerson_Client_Branches_Controller {
 	}	
 	}
 	
+	@PostMapping("/CreatSalesPerson")
+	public ResponseEntity<SalesPerson> create_SalesPersons(@RequestBody SalesPerson newSalesPerson){
+		if(newSalesPerson== null) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+		SalesPerson saved = service.Save_SalesPerson(newSalesPerson);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(saved);		
+	}
+
+	@GetMapping("/allSalesPersons")
+	public ResponseEntity<List<SalesPerson>> get_salesPersons(){
+		
+	List<SalesPerson> allSalesPersons= service.FindAll_SalesPerson();
+	
+	if(allSalesPersons.isEmpty()) {
+		return ResponseEntity.noContent().build();
+	}else {
+		return ResponseEntity.ok(allSalesPersons);
+	}	
+	}
 	
 }
