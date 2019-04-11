@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Lexicon.Rent_Cars.Services.SalesPerson_Services_Dao;
+import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Client;
+import Lexicon.Rent_Cars.entity.ContactsInfo;
 import Lexicon.Rent_Cars.entity.SalesPerson;
 
 @RestController
@@ -73,4 +75,49 @@ public class SalesPerson_Client_Branches_Controller {
 	}	
 	}
 	
+	@PostMapping("/CreatBranch")
+	public ResponseEntity<Branches> create_Branch(@RequestBody Branches newBranch){
+		if(newBranch== null) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+		Branches saved = service.save_Branch(newBranch);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(saved);		
+	}
+
+	@GetMapping("/allBranches")
+	public ResponseEntity<List<Branches>> get_Branches(){
+		
+	List<Branches> allBranches= service.findAll_Branches();
+	
+	if(allBranches.isEmpty()) {
+		return ResponseEntity.noContent().build();
+	}else {
+		return ResponseEntity.ok(allBranches);
+	}	
+	}
+	
+	@PostMapping("/CreatContactInfo")
+	public ResponseEntity<ContactsInfo> create_Contact(@RequestBody ContactsInfo newContact){
+		if(newContact== null) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+		ContactsInfo saved = service.Save_Contact(newContact);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(saved);		
+	}
+
+	@GetMapping("/allContact")
+	public ResponseEntity<List<ContactsInfo>> get_Contact(){
+		
+	List<ContactsInfo> allContact= service.FindAll_Contact();
+	
+	if(allContact.isEmpty()) {
+		return ResponseEntity.noContent().build();
+	}else {
+		return ResponseEntity.ok(allContact);
+	}	
+	}
 }
