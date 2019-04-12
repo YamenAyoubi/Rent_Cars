@@ -1,29 +1,23 @@
 package Lexicon.Rent_Cars.entity;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
 public class SalesPerson {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String firstName;
 	private String secondName;
 
-
-
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private ContactsInfo contactsInfo;
-
 
 	public SalesPerson(String firstName, String secondName, ContactsInfo contactsInfo) {
 		super();
@@ -32,34 +26,28 @@ public class SalesPerson {
 		this.contactsInfo = contactsInfo;
 	}
 
-
-	public SalesPerson() {}
-
+	public SalesPerson() {
+	}
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 
 	public String getSecondName() {
 		return secondName;
 	}
 
-
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
 
-
 	public ContactsInfo getContactsInfo() {
 		return contactsInfo;
 	}
-
 
 	public void setContactsInfo(ContactsInfo contactsInfo) {
 		this.contactsInfo = contactsInfo;
@@ -68,7 +56,6 @@ public class SalesPerson {
 	public int getId() {
 		return id;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -80,7 +67,6 @@ public class SalesPerson {
 		result = prime * result + ((secondName == null) ? 0 : secondName.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -111,7 +97,6 @@ public class SalesPerson {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "SalesPerson [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", contactsInfo="
@@ -119,4 +104,3 @@ public class SalesPerson {
 	}
 
 }
-

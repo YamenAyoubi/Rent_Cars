@@ -9,10 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 
 @Entity
 public class Agreement {
@@ -25,9 +22,8 @@ public class Agreement {
 	private int rent_period;
 	private int total_cost;
 
-
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-	fetch = FetchType.EAGER)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "Car_ID")
 	private Cars selected_Car;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
@@ -35,12 +31,10 @@ public class Agreement {
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private SalesPerson sales_Person;
 
-	
 	private int baby_chair_cost;
 	private int navigation_cost;
 	private final LocalDateTime creationDateTime;
 	private final LocalDateTime endingDateTime;
-
 
 	public Agreement(boolean navigation, boolean baby_chair, Cars selected_Car, Client client_Details,
 			SalesPerson sales_Person, int rent_period) {
@@ -52,21 +46,21 @@ public class Agreement {
 		this.sales_Person = sales_Person;
 		this.rent_period = rent_period;
 		creationDateTime = LocalDateTime.now();
-		endingDateTime=creationDateTime.plusDays(rent_period);
+		endingDateTime = creationDateTime.plusDays(rent_period);
 		countCost();
 		Discount();
 	}
 
 	public Agreement() {
 		creationDateTime = LocalDateTime.now();
-		endingDateTime=creationDateTime.plusDays(rent_period);
+		endingDateTime = creationDateTime.plusDays(rent_period);
 	}
 
 	private void countCost() {
 
 		if (navigation == true) {
 			navigation_cost = 30 * rent_period;
-			
+
 		} else {
 			navigation_cost = 0;
 		}
@@ -261,5 +255,4 @@ public class Agreement {
 				+ "]";
 	}
 
-	
 }

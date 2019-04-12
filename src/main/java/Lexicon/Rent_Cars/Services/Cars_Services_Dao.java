@@ -2,8 +2,6 @@ package Lexicon.Rent_Cars.Services;
 
 import java.util.List;
 
-import Lexicon.Rent_Cars.entity.Agreement;
-import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
 import Lexicon.Rent_Cars.entity.MoreDescriptions;
 import Lexicon.Rent_Cars.entity.RentalPrices;
@@ -18,9 +16,9 @@ public interface Cars_Services_Dao {
 
 	List<Cars> findAll_Cars();
 
-	boolean AddCarToAgreement(int agreement_id ,int car_id);
+	boolean AddCarToAgreement(int agreement_id, int car_id);
 
-	boolean AddCarToBranch(int car_id , int branch_id);
+	boolean AddCarToBranch(int car_id, int branch_id);
 
 	List<Cars> findByNameIgnoreCase_car(String name);
 
@@ -28,9 +26,9 @@ public interface Cars_Services_Dao {
 
 	List<Cars> FindRentedCars();
 
-	Cars Add_Rentalprice_ToCar(int rentalPrices_id,int car_id);
+	Cars Add_Rentalprice_ToCar(int rentalPrices_id, int car_id);
 
-	Cars Add_MoreDescriptions_ToCar(int moreDescriptions_id,int id);
+	Cars Add_MoreDescriptions_ToCar(int moreDescriptions_id, int id);
 
 	List<Cars> findByRentalprices(int rentalprices);
 
@@ -45,10 +43,10 @@ public interface Cars_Services_Dao {
 	RentalPrices findById_rentalPrice(int id);
 
 	List<RentalPrices> findAll_rentalPrice();
-	
+
 	MoreDescriptions findById_moreDes(int id);
-	
-	 List<MoreDescriptions> findAll__moreDes();
-	 
-	 void agreement_finished_CarBoolean(int agreement_id);
+
+	List<MoreDescriptions> findAll__moreDes();
+
+	void agreement_finished_CarBoolean(int agreement_id);
 }

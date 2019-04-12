@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import Lexicon.Rent_Cars.Services.Agreement_Services_Dao;
 import Lexicon.Rent_Cars.entity.Agreement;
 
-
 @RestController
 @RequestMapping("/myapp/api")
 public class AgreementController {
@@ -26,36 +25,36 @@ public class AgreementController {
 		super();
 		this.agreementService = agreementService;
 	}
-	
+
 	@GetMapping("/allagreements")
-	public ResponseEntity<List<Agreement>> get(){
-		
-	List<Agreement> agreements = agreementService.findAll_agreement();
-	
-	if(agreements.isEmpty()) {
-		return ResponseEntity.noContent().build();
-	}else {
-		return ResponseEntity.ok(agreements);
-	}	
+	public ResponseEntity<List<Agreement>> get() {
+
+		List<Agreement> agreements = agreementService.findAll_agreement();
+
+		if (agreements.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.ok(agreements);
+		}
 	}
-	
+
 	@PostMapping("/CreatAgreement")
-	public ResponseEntity<Agreement> create(@RequestBody Agreement newAgreement){
-		if(newAgreement== null) {
+	public ResponseEntity<Agreement> create(@RequestBody Agreement newAgreement) {
+		if (newAgreement == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		
+
 		Agreement saved = agreementService.save_Agreement(newAgreement);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(saved);		
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(saved);
 	}
-	
+
 	@GetMapping("/allagreements/{id}")
-	public ResponseEntity<Agreement> mor_Agreement_By_Id(@PathVariable int id){		
+	public ResponseEntity<Agreement> mor_Agreement_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(agreementService.findById_agreement(id));
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
-		}		
+		}
 	}
 }

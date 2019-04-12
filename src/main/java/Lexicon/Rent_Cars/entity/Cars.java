@@ -7,16 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
-
 @Entity
 public class Cars {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private RentalPrices rentalprices;
@@ -30,7 +27,8 @@ public class Cars {
 		this.more_Descriptions = more_Descriptions;
 	}
 
-	public Cars() {}
+	public Cars() {
+	}
 
 	public String getName() {
 		return name;
@@ -56,12 +54,9 @@ public class Cars {
 		this.more_Descriptions = more_Descriptions;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -105,9 +100,8 @@ public class Cars {
 
 	@Override
 	public String toString() {
-		return "Cars [ name=" + name  + ", rentalprices=" + rentalprices
-				+ ", more_Descriptions=" + more_Descriptions + "]";
+		return "Cars [ name=" + name + ", rentalprices=" + rentalprices + ", more_Descriptions=" + more_Descriptions
+				+ "]";
 	}
 
-	
 }

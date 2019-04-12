@@ -1,37 +1,29 @@
 package Lexicon.Rent_Cars.entity;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-
-
 
 @Entity
 public class RentalPrices {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int rentPrice;
-	
-	
+
 	public RentalPrices(int rentPrice) {
 		super();
 		this.rentPrice = rentPrice;
 	}
 
-
-	public RentalPrices() {}
-
+	public RentalPrices() {
+	}
 
 	public int getRentPrice() {
 		return rentPrice;
 	}
-
 
 	public void setRentPrice(int rentPrice) {
 		this.rentPrice = rentPrice;
@@ -40,7 +32,6 @@ public class RentalPrices {
 	public int getId() {
 		return id;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -50,7 +41,6 @@ public class RentalPrices {
 		result = prime * result + rentPrice;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -67,7 +57,6 @@ public class RentalPrices {
 			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {

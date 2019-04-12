@@ -1,20 +1,16 @@
 package Lexicon.Rent_Cars.entity;
 
-
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
-
 @Entity
 public class MoreDescriptions {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String brand;
 	private String color;
@@ -22,10 +18,9 @@ public class MoreDescriptions {
 	private String size;
 	private boolean fuel;
 	private boolean auto;
-	private boolean rented=false;
+	private boolean rented = false;
 	private String scratches;
-		
-	
+
 	public MoreDescriptions(String brand, String color, String model, String size, boolean auto, String scratches) {
 		super();
 		this.brand = brand;
@@ -36,84 +31,68 @@ public class MoreDescriptions {
 		this.scratches = scratches;
 	}
 
-
-	public MoreDescriptions() {}
-
+	public MoreDescriptions() {
+	}
 
 	public String getBrand() {
 		return brand;
 	}
 
-
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-
 
 	public String getColor() {
 		return color;
 	}
 
-
 	public void setColor(String color) {
 		this.color = color;
 	}
-
 
 	public String getModel() {
 		return model;
 	}
 
-
 	public void setModel(String model) {
 		this.model = model;
 	}
-
 
 	public String getSize() {
 		return size;
 	}
 
-
 	public void setSize(String size) {
 		this.size = size;
 	}
-
 
 	public boolean isFuel() {
 		return fuel;
 	}
 
-
 	public void setFuel(boolean fuel) {
 		this.fuel = fuel;
 	}
-
 
 	public boolean isAuto() {
 		return auto;
 	}
 
-
 	public void setAuto(boolean auto) {
 		this.auto = auto;
 	}
-
 
 	public boolean isRented() {
 		return rented;
 	}
 
-
 	public void setRented(boolean rented) {
 		this.rented = rented;
 	}
 
-
 	public String getScratches() {
 		return scratches;
 	}
-
 
 	public void setScratches(String scratches) {
 		this.scratches = scratches;
@@ -138,7 +117,6 @@ public class MoreDescriptions {
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -185,15 +163,10 @@ public class MoreDescriptions {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "MoreDescriptions [brand=" + brand + ", color=" + color + ", model=" + model + ", size=" + size
 				+ ", fuel=" + fuel + ", auto=" + auto + ", rented=" + rented + ", scratches=" + scratches + "]";
 	}
-	
-	
-	
 
-	
 }

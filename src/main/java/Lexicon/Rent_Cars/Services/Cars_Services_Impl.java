@@ -1,7 +1,6 @@
 package Lexicon.Rent_Cars.Services;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,6 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	private MoreDescriptionsRepo MoreDes_repo;
 	private RentalPricesRepo rentalPrices_repo;
 	private BranchesRepo branch_Repo;
-
 
 	@Autowired
 	public Cars_Services_Impl(CarsRepo cars_Repo, AgreementRepo agreement_Repo, MoreDescriptionsRepo moreDes_repo,
@@ -63,8 +61,8 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public boolean AddCarToAgreement(int agreement_id ,int car_id) {
-		Optional<Agreement> selected_agreement  = agreement_Repo.findById(agreement_id);
+	public boolean AddCarToAgreement(int agreement_id, int car_id) {
+		Optional<Agreement> selected_agreement = agreement_Repo.findById(agreement_id);
 		Cars selected_car = findById_Car(car_id);
 		if (!selected_car.getMore_Descriptions().isRented() == true) {
 			selected_agreement.get().setSelected_Car(selected_car);
@@ -77,12 +75,12 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public boolean AddCarToBranch(int car_id , int branch_id) {
-		
+	public boolean AddCarToBranch(int car_id, int branch_id) {
+
 		Cars selected_car = findById_Car(car_id);
 		Optional<Branches> selected_branch = branch_Repo.findById(branch_id);
 		selected_branch.filter(x -> x.getCars_Lists().add(selected_car));
-		return true;	
+		return true;
 	}
 
 	@Override
@@ -116,20 +114,20 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 	}
 
 	@Override
-	public Cars Add_Rentalprice_ToCar(int rentalPrices_id,int car_id) {
-		Cars selected_car =  findById_Car(car_id);
+	public Cars Add_Rentalprice_ToCar(int rentalPrices_id, int car_id) {
+		Cars selected_car = findById_Car(car_id);
 		RentalPrices rentalPrice = findById_rentalPrice(rentalPrices_id);
 		selected_car.setRentalprices(rentalPrice);
 		return save_Car(selected_car);
 	}
 
 	@Override
-	public Cars Add_MoreDescriptions_ToCar(int moreDescriptions_id,int car_id) {
-		Cars selected_car =  findById_Car(car_id);
+	public Cars Add_MoreDescriptions_ToCar(int moreDescriptions_id, int car_id) {
+		Cars selected_car = findById_Car(car_id);
 		MoreDescriptions selected_more_des = findById_moreDes(moreDescriptions_id);
 		selected_car.setMore_Descriptions(selected_more_des);
 		return save_Car(selected_car);
-	
+
 	}
 
 	@Override
@@ -167,32 +165,32 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 		rentalPrices_repo.deleteById(id);
 		return rentalPrices_repo.existsById(id);
 	}
-	
+
 	@Override
 	public RentalPrices findById_rentalPrice(int id) {
 		return rentalPrices_repo.findById(id).orElseThrow(IllegalArgumentException::new);
 	}
-	
+
 	@Override
 	public List<RentalPrices> findAll_rentalPrice() {
 		return (List<RentalPrices>) rentalPrices_repo.findAll();
 	}
-	
+
 	@Override
 	public MoreDescriptions findById_moreDes(int id) {
 		return MoreDes_repo.findById(id).orElseThrow(IllegalArgumentException::new);
 	}
-	
+
 	@Override
 	public List<MoreDescriptions> findAll__moreDes() {
 		return (List<MoreDescriptions>) MoreDes_repo.findAll();
 	}
-	
+
 	@Override
 	public void agreement_finished_CarBoolean(int agreement_id) {
-		Optional<Agreement> selected_agreement  = agreement_Repo.findById(agreement_id);
+		Optional<Agreement> selected_agreement = agreement_Repo.findById(agreement_id);
 		selected_agreement.get().getSelected_Car().getMore_Descriptions().setRented(false);
-		selected_agreement.get().getSelected_Car().getMore_Descriptions().setFuel(true);	
+		selected_agreement.get().getSelected_Car().getMore_Descriptions().setFuel(true);
 		agreement_Repo.save(selected_agreement.get());
 	}
 }

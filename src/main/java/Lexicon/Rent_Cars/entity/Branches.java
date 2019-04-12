@@ -16,22 +16,20 @@ import javax.persistence.OneToMany;
 public class Branches {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String city;
-	
-	@OneToMany(
-			cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
-			fetch = FetchType.EAGER, 
-			orphanRemoval = true)
-	@JoinColumn(name="Branch_ID")
-	private List<Cars> Cars_Lists=new ArrayList<>();
-	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},orphanRemoval = true)
-	@JoinColumn(name="Branch_ID")
-	private List<SalesPerson> SalesPersons_list=new ArrayList<>();
-	
+
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "Branch_ID")
+	private List<Cars> Cars_Lists = new ArrayList<>();
+
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH }, orphanRemoval = true)
+	@JoinColumn(name = "Branch_ID")
+	private List<SalesPerson> SalesPersons_list = new ArrayList<>();
 
 	public Branches(String name, String city) {
 		super();
@@ -39,9 +37,8 @@ public class Branches {
 		this.city = city;
 	}
 
-	public Branches(){}
-
-
+	public Branches() {
+	}
 
 	public String getName() {
 		return name;
@@ -67,12 +64,9 @@ public class Branches {
 		Cars_Lists = cars_Lists;
 	}
 
-	
 	public int getId() {
 		return id;
 	}
-
-
 
 	public List<SalesPerson> getSalesPersons_list() {
 		return SalesPersons_list;
@@ -82,7 +76,6 @@ public class Branches {
 		SalesPersons_list = salesPersons_list;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

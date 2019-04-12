@@ -2,28 +2,22 @@ package Lexicon.Rent_Cars.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
 
 @Entity
 public class Client {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String firstName;
 	private String scondName;
 
-	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private ContactsInfo contactsInfo;
-
-
 
 	public Client(String firstName, String scondName, ContactsInfo contactsInfo) {
 		super();
@@ -32,7 +26,8 @@ public class Client {
 		this.contactsInfo = contactsInfo;
 	}
 
-	public Client() {}
+	public Client() {
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -57,15 +52,10 @@ public class Client {
 	public ContactsInfo getContactsInfo() {
 		return contactsInfo;
 	}
-	
-	
 
 	public void setContactsInfo(ContactsInfo contactsInfo) {
 		this.contactsInfo = contactsInfo;
 	}
-
-
-
 
 	@Override
 	public int hashCode() {
@@ -109,10 +99,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [ firstName=" + firstName + ", scondName=" + scondName + ", contactsInfo="
-				+ contactsInfo + "]";
+		return "Client [ firstName=" + firstName + ", scondName=" + scondName + ", contactsInfo=" + contactsInfo + "]";
 	}
-	
-	
-	
+
 }
