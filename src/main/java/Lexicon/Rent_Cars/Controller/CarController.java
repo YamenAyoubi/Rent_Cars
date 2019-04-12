@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -98,4 +99,30 @@ public class CarController {
 	}	
 	}
 	
+	@GetMapping("/allCars/{id}")
+	public ResponseEntity<Cars> carById(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(car_Service.findById_Car(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
+	}
+	
+	@GetMapping("/allMoreDes/{id}")
+	public ResponseEntity<MoreDescriptions> mor_Des_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(car_Service.findById_moreDes(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
+	}
+	
+	@GetMapping("/allPrices/{id}")
+	public ResponseEntity<RentalPrices> mor_Prices_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(car_Service.findById_rentalPrice(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
+	}
 }

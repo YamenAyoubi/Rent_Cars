@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import Lexicon.Rent_Cars.Services.Agreement_Services_Dao;
 import Lexicon.Rent_Cars.entity.Agreement;
+
 
 @RestController
 @RequestMapping("/myapp/api")
@@ -46,5 +48,14 @@ public class AgreementController {
 		Agreement saved = agreementService.save_Agreement(newAgreement);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(saved);		
+	}
+	
+	@GetMapping("/allagreements/{id}")
+	public ResponseEntity<Agreement> mor_Agreement_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(agreementService.findById_agreement(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
 	}
 }

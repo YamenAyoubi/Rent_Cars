@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -119,5 +120,40 @@ public class SalesPerson_Client_Branches_Controller {
 	}else {
 		return ResponseEntity.ok(allContact);
 	}	
+	}
+	
+	@GetMapping("/allClient/{id}")
+	public ResponseEntity<Client> mor_client_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(service.findById_client(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
+		}
+	
+	@GetMapping("/allSalesPersons/{id}")
+	public ResponseEntity<SalesPerson> mor_salesPerson_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(service.findById_SalesPerson(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
+	}
+	
+	@GetMapping("/allBranches/{id}")
+	public ResponseEntity<Branches> mor_Branch_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(service.findById_Branch(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
+	}
+	@GetMapping("/allContact/{id}")
+	public ResponseEntity<ContactsInfo> mor_Contact_By_Id(@PathVariable int id){		
+		try {
+			return ResponseEntity.ok(service.findById_Contact(id));
+		}catch(IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}		
 	}
 }
