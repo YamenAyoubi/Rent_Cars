@@ -49,4 +49,8 @@ public interface Cars_Services_Dao {
 	List<MoreDescriptions> findAll__moreDes();
 
 	void agreement_finished_CarBoolean(int agreement_id);
+	
+	MoreDescriptions update_MoreDes(int more_Des_Id, MoreDescriptions updated) throws IllegalArgumentException;
+
+	RentalPrices update_RentPrices(int RentalPrices, RentalPrices updated) throws IllegalArgumentException;
 }

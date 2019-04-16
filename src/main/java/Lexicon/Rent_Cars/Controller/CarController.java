@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +50,19 @@ public class CarController {
 			return ResponseEntity.noContent().build();
 		} else {
 			return ResponseEntity.ok(allCars);
+		}
+	}
+
+	@PutMapping("/updateMoreDes/{id}")
+	public ResponseEntity<MoreDescriptions> update_MoreDes_to_Cars(@PathVariable int id,
+			@RequestBody MoreDescriptions updated) {
+		if (updated == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		try {
+			return ResponseEntity.ok(car_Service.update_MoreDes(id, updated));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
 		}
 	}
 
@@ -124,4 +138,18 @@ public class CarController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+	@PutMapping("/updatePrices/{id}")
+	public ResponseEntity<RentalPrices> update_Rent_Prices(@PathVariable int id,
+			@RequestBody RentalPrices updated) {
+		if (updated == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		try {
+			return ResponseEntity.ok(car_Service.update_RentPrices(id, updated));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
 }

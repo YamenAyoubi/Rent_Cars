@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.SocketUtils;
+
 import Lexicon.Rent_Cars.Services.Cars_Services_Dao;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
@@ -48,6 +50,7 @@ public class TestCommandLine implements CommandLineRunner {
 		private RentalPrices Test_Rent_Prices;
 		private SalesPerson Test_Sales_Person;
 		
+		
 		Cars_Services_Dao impl;
 	
 	
@@ -74,13 +77,14 @@ public class TestCommandLine implements CommandLineRunner {
 		ContactsInfo cont2=new ContactsInfo("vaxjoo", "0701233356");
 		Client client1=new Client("Erik","Eriksson",cont1);	
 		MoreDescriptions  Mor1=new MoreDescriptions("Volvo","silver","2018","6 seats",true,"some scratches at front");
+		MoreDescriptions  Mor2=new MoreDescriptions("Opel","silver","2018","6 seats",true,"some scratches at front");
 		RentalPrices Price1=new RentalPrices(230);
 		RentalPrices Price2=new RentalPrices(160);
 		SalesPerson Sales1=new SalesPerson("YAMEN", "Ayou",cont2);
 
 		Cars car1 = new Cars("Opel",Price1,Mor1);
 		Cars car2=new Cars("Volvo",Price2,Mor1);
-
+		Cars car3=new Cars("BMW",Price2,Mor2);
 		
 		Test_Car=test_cars_repo.save(car1);
 		Test_Car=test_cars_repo.save(car2);
@@ -89,14 +93,16 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_cont1=test_cont_repo.save(cont1);
 		Test_cont2=test_cont_repo.save(cont2);
 		Test_Mor=test_Mor_repo.save(Mor1);
+		Test_Mor=test_Mor_repo.save(Mor2);
 		Test_Rent_Prices=test_rentPrices_repo.save(Price1);
 		Test_Sales_Person=test_sales_repo.save(Sales1);
-		
+		car3.setRentalprices(Price2);
+		Test_Car=test_cars_repo.save(car3);
 		
 		Test_client.setContactsInfo(Test_cont1);
 		Test_Sales_Person.setContactsInfo(Test_cont2);
 		Test_Car.setRentalprices(Test_Rent_Prices);
-		Test_Car.setMore_Descriptions(Test_Mor);
+		Test_Car.setMore_Descriptions(Mor2);
 		List<Cars> branchCars=new ArrayList<>();
 		branchCars.add(car1);
 		branchCars.add(car2);
@@ -109,9 +115,14 @@ public class TestCommandLine implements CommandLineRunner {
 		
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
-		
-
-		System.out.println(Test_agreement);
+		test_cars_repo.deleteById(3);
+		car3.setRentalprices(Price2);
+		System.out.println(test_cars_repo.findAll());
+		test_cars_repo.findAll().forEach(System.out::println);
+		System.out.println(Test_Mor.getScratches());
+		System.out.println(Test_Mor.getColor());
+		System.out.println(Test_Mor.isRented());
+		System.out.println(Test_Mor.isAuto());
 		
 	}
 

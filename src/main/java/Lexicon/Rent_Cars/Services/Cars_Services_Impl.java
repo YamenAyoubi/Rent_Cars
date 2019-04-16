@@ -193,4 +193,20 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 		selected_agreement.get().getSelected_Car().getMore_Descriptions().setFuel(true);
 		agreement_Repo.save(selected_agreement.get());
 	}
+	
+	@Override
+	public MoreDescriptions update_MoreDes(int more_Des_Id, MoreDescriptions updated) throws IllegalArgumentException{
+		
+		MoreDescriptions original = findById_moreDes(more_Des_Id);		
+		original.setScratches(updated.getScratches());
+		return MoreDes_repo.save(original);
+	}
+	
+	@Override
+	public RentalPrices update_RentPrices(int RentalPrices_id, RentalPrices updated) throws IllegalArgumentException{
+		
+		RentalPrices original = findById_rentalPrice(RentalPrices_id);		
+		original.setRentPrice(updated.getRentPrice());
+		return rentalPrices_repo.save(original);
+	}
 }
