@@ -34,7 +34,7 @@ public class Cars_Services_Impl implements Cars_Services_Dao {
 		super();
 		this.cars_Repo = cars_Repo;
 		this.agreement_Repo = agreement_Repo;
-		MoreDes_repo = moreDes_repo;
+		this.MoreDes_repo = moreDes_repo;
 		this.rentalPrices_repo = rentalPrices_repo;
 		this.branch_Repo = branch_Repo;
 	}

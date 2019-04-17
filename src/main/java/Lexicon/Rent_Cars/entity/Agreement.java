@@ -20,7 +20,8 @@ public class Agreement {
 	private boolean navigation;
 	private boolean baby_chair;
 	private int rent_period;
-	private int total_cost;
+	private double total_cost;
+	private boolean Paid;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
 			CascadeType.DETACH }, fetch = FetchType.EAGER)
@@ -108,7 +109,7 @@ public class Agreement {
 		this.baby_chair = baby_chair;
 	}
 
-	public int getTotal_cost() {
+	public double getTotal_cost() {
 		return total_cost;
 	}
 
@@ -175,11 +176,21 @@ public class Agreement {
 	public void setRent_period(int rent_period) {
 		this.rent_period = rent_period;
 	}
+	
+	
 
+	public boolean isPaid() {
+		return Paid;
+	}
+
+	public void setPaid(boolean paid) {
+		Paid = paid;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (Paid ? 1231 : 1237);
 		result = prime * result + (baby_chair ? 1231 : 1237);
 		result = prime * result + baby_chair_cost;
 		result = prime * result + ((client_Details == null) ? 0 : client_Details.hashCode());
@@ -191,7 +202,9 @@ public class Agreement {
 		result = prime * result + rent_period;
 		result = prime * result + ((sales_Person == null) ? 0 : sales_Person.hashCode());
 		result = prime * result + ((selected_Car == null) ? 0 : selected_Car.hashCode());
-		result = prime * result + total_cost;
+		long temp;
+		temp = Double.doubleToLongBits(total_cost);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -204,6 +217,8 @@ public class Agreement {
 		if (getClass() != obj.getClass())
 			return false;
 		Agreement other = (Agreement) obj;
+		if (Paid != other.Paid)
+			return false;
 		if (baby_chair != other.baby_chair)
 			return false;
 		if (baby_chair_cost != other.baby_chair_cost)
@@ -241,7 +256,7 @@ public class Agreement {
 				return false;
 		} else if (!selected_Car.equals(other.selected_Car))
 			return false;
-		if (total_cost != other.total_cost)
+		if (Double.doubleToLongBits(total_cost) != Double.doubleToLongBits(other.total_cost))
 			return false;
 		return true;
 	}
