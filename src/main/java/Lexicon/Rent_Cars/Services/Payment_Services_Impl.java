@@ -56,12 +56,10 @@ public class Payment_Services_Impl implements Payment_Service_Dao {
 		if (remains == 0) {
 			selected_agreement.get().setTotal_cost(remains);
 			selected_agreement.get().setPaid(true);
-			selected_agreement.get().getSelected_Car().getMore_Descriptions().setRented(false);
 		} else {
 			System.out.println("Remains Amount is :" + " " + remains);
 			selected_agreement.get().setTotal_cost(remains);
 			selected_agreement.get().setPaid(false);
-			selected_agreement.get().getSelected_Car().getMore_Descriptions().setRented(false);
 			agreement_Repo.save(selected_agreement.get());
 		}
 		return payment_Repo.save(payment);

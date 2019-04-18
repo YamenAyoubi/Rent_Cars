@@ -120,6 +120,9 @@ public class Agreement {
 	}
 
 	public Cars getSelected_Car() {
+		if (selected_Car.equals(selected_Car)) {
+			selected_Car.getMore_Descriptions().setRented(true);
+		}
 		return selected_Car;
 	}
 
@@ -172,7 +175,11 @@ public class Agreement {
 	}
 
 	public LocalDateTime getEndingDateTime() {
+		if (endingDateTime.equals(endingDateTime)) {
+			selected_Car.getMore_Descriptions().setRented(false);
+		}
 		return endingDateTime;
+		
 	}
 
 	public void setRent_period(int rent_period) {
