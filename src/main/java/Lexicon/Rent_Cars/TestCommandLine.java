@@ -42,6 +42,7 @@ public class TestCommandLine implements CommandLineRunner {
 	 private RentalPricesRepo test_rentPrices_repo;
 	 private SalesPersonRepo test_sales_repo;
 	 private PaymenRepo test_payment_repo;
+	 private Payment_Service_Dao service;
 	 
 		private Agreement Test_agreement;
 		private Branches Test_branch;
@@ -113,7 +114,8 @@ public class TestCommandLine implements CommandLineRunner {
 		branchCars.add(car1);
 		branchCars.add(car2);
 		Test_branch.setCars_Lists(branchCars);
-		test_payment_repo.save(payment);
+		Test_Payment=test_payment_repo.save(payment);
+		
 		
 		
 		
@@ -124,6 +126,7 @@ public class TestCommandLine implements CommandLineRunner {
 		Test_agreement=new Agreement(true, true, Test_Car, Test_client, Test_Sales_Person, 20);
 		test_agreement_repo.save(Test_agreement);
 		test_cars_repo.deleteById(3);
+		Test_agreement.setPayment(Test_Payment);
 		car3.setRentalprices(Price2);
 		System.out.println(test_cars_repo.findAll());
 		test_cars_repo.findAll().forEach(System.out::println);

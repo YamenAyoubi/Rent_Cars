@@ -62,6 +62,10 @@ public class Payment {
 		return agreement_Id;
 	}
 
+	public void setAgreement_Id(int agreement_Id) {
+		this.agreement_Id = agreement_Id;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -31,6 +31,8 @@ public class Agreement {
 	private Client client_Details;
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	private SalesPerson sales_Person;
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+	private Payment payment ; 
 
 	private int baby_chair_cost;
 	private int navigation_cost;
@@ -184,6 +186,18 @@ public class Agreement {
 	public void setPaid(boolean paid) {
 		Paid = paid;
 	}
+	
+	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		if (payment.getAmount()==getTotal_cost())
+			setPaid(true);
+		this.payment = payment;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -197,6 +211,7 @@ public class Agreement {
 		result = prime * result + id;
 		result = prime * result + (navigation ? 1231 : 1237);
 		result = prime * result + navigation_cost;
+		result = prime * result + ((payment == null) ? 0 : payment.hashCode());
 		result = prime * result + rent_period;
 		result = prime * result + ((sales_Person == null) ? 0 : sales_Person.hashCode());
 		result = prime * result + ((selected_Car == null) ? 0 : selected_Car.hashCode());
@@ -242,6 +257,11 @@ public class Agreement {
 			return false;
 		if (navigation_cost != other.navigation_cost)
 			return false;
+		if (payment == null) {
+			if (other.payment != null)
+				return false;
+		} else if (!payment.equals(other.payment))
+			return false;
 		if (rent_period != other.rent_period)
 			return false;
 		if (sales_Person == null) {
@@ -261,11 +281,13 @@ public class Agreement {
 
 	@Override
 	public String toString() {
-		return "Agreement [id=" + id + ", navigation=" + navigation + ", baby_chair=" + baby_chair + ", total_cost="
-				+ total_cost + ", selected_Car=" + selected_Car + ", client_Details=" + client_Details
-				+ ", sales_Person=" + sales_Person + ", baby_chair_cost=" + baby_chair_cost + ", navigation_cost="
-				+ navigation_cost + ", creationDateTime=" + creationDateTime + ", endingDateTime=" + endingDateTime
-				+ "]";
+		return "Agreement [id=" + id + ", navigation=" + navigation + ", baby_chair=" + baby_chair + ", rent_period="
+				+ rent_period + ", total_cost=" + total_cost + ", Paid=" + Paid + ", selected_Car=" + selected_Car
+				+ ", client_Details=" + client_Details + ", sales_Person=" + sales_Person + ", payment=" + payment
+				+ ", baby_chair_cost=" + baby_chair_cost + ", navigation_cost=" + navigation_cost
+				+ ", creationDateTime=" + creationDateTime + ", endingDateTime=" + endingDateTime + "]";
 	}
+
+
 
 }
