@@ -123,7 +123,7 @@ public class SalesPerson_Client_Branches_Controller {
 	}
 
 	@GetMapping("/allClient/{id}")
-	public ResponseEntity<Client> mor_client_By_Id(@PathVariable int id) {
+	public ResponseEntity<Client> clients_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(service.findById_client(id));
 		} catch (IllegalArgumentException e) {
@@ -132,7 +132,7 @@ public class SalesPerson_Client_Branches_Controller {
 	}
 
 	@GetMapping("/allSalesPersons/{id}")
-	public ResponseEntity<SalesPerson> mor_salesPerson_By_Id(@PathVariable int id) {
+	public ResponseEntity<SalesPerson> salesPerson_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(service.findById_SalesPerson(id));
 		} catch (IllegalArgumentException e) {
@@ -141,7 +141,7 @@ public class SalesPerson_Client_Branches_Controller {
 	}
 
 	@GetMapping("/allBranches/{id}")
-	public ResponseEntity<Branches> mor_Branch_By_Id(@PathVariable int id) {
+	public ResponseEntity<Branches> branch_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(service.findById_Branch(id));
 		} catch (IllegalArgumentException e) {
@@ -150,7 +150,7 @@ public class SalesPerson_Client_Branches_Controller {
 	}
 
 	@GetMapping("/allContact/{id}")
-	public ResponseEntity<ContactsInfo> mor_Contact_By_Id(@PathVariable int id) {
+	public ResponseEntity<ContactsInfo> contact_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(service.findById_Contact(id));
 		} catch (IllegalArgumentException e) {

@@ -20,23 +20,10 @@ public class Payment_Services_Impl implements Payment_Service_Dao {
 	private AgreementRepo agreement_Repo;
 
 	@Autowired
-	public Payment_Services_Impl(PaymenRepo payment_Repo) {
+	public Payment_Services_Impl(PaymenRepo payment_Repo, AgreementRepo agreement_Repo) {
 		super();
 		this.payment_Repo = payment_Repo;
-	}
-
-	@Override
-	public void addPayment(Payment payment, int agreement_id) {
-		Optional<Agreement> selected_agreement = agreement_Repo.findById(agreement_id);
-		double remains = selected_agreement.get().getTotal_cost() - payment.getAmount();
-		if (remains == 0) {
-			selected_agreement.get().setPaid(true);
-		} else {
-			System.out.println("Remains Amount is :" + " " + remains);
-			selected_agreement.get().setPaid(false);
-			selected_agreement.get().getSelected_Car().getMore_Descriptions().setRented(false);
-			agreement_Repo.save(selected_agreement.get());
-		}
+		this.agreement_Repo = agreement_Repo;
 	}
 
 	@Override
@@ -60,6 +47,24 @@ public class Payment_Services_Impl implements Payment_Service_Dao {
 		Optional<Payment> selected_Payment = payment_Repo.findById(paymentId);
 		selected_Payment.get().setAmount(amount);
 		payment_Repo.save(selected_Payment.get());
+	}
+	
+	@Override
+	public Payment save_Payment(Payment payment) {
+		Optional<Agreement> selected_agreement = agreement_Repo.findById(payment.getAgreement_Id());
+		double remains = selected_agreement.get().getTotal_cost() - payment.getAmount();
+		if (remains == 0) {
+			selected_agreement.get().setTotal_cost(remains);
+			selected_agreement.get().setPaid(true);
+			selected_agreement.get().getSelected_Car().getMore_Descriptions().setRented(false);
+		} else {
+			System.out.println("Remains Amount is :" + " " + remains);
+			selected_agreement.get().setTotal_cost(remains);
+			selected_agreement.get().setPaid(false);
+			selected_agreement.get().getSelected_Car().getMore_Descriptions().setRented(false);
+			agreement_Repo.save(selected_agreement.get());
+		}
+		return payment_Repo.save(payment);
 	}
 
 }

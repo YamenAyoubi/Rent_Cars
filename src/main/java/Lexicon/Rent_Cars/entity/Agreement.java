@@ -113,8 +113,8 @@ public class Agreement {
 		return total_cost;
 	}
 
-	public void setTotal_cost(int total_cost) {
-		this.total_cost = total_cost;
+	public void setTotal_cost(double remains) {
+		this.total_cost = remains;
 	}
 
 	public Cars getSelected_Car() {
@@ -177,8 +177,6 @@ public class Agreement {
 		this.rent_period = rent_period;
 	}
 	
-	
-
 	public boolean isPaid() {
 		return Paid;
 	}

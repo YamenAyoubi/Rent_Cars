@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import Lexicon.Rent_Cars.repository.AgreementRepo;
+
 
 @Entity
 public class Payment {
@@ -25,6 +27,11 @@ public class Payment {
 		this.paymentDateTime = LocalDateTime.now();
 		this.isConfirm=true;
 	}
+
+	public Payment() {
+		super();
+	}
+
 
 	public LocalDateTime getPaymentDateTime() {
 		return paymentDateTime;
@@ -53,10 +60,6 @@ public class Payment {
 
 	public int getAgreement_Id() {
 		return agreement_Id;
-	}
-
-	public void setAgreement_Id(int agreement_Id) {
-		this.agreement_Id = agreement_Id;
 	}
 
 	public int getId() {
@@ -103,8 +106,8 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [id=" + id + ", paymentDateTime=" + paymentDateTime + ", amount=" + amount + ", agreement_Id="
-				+ agreement_Id + "]";
+		return "Payment [id=" + id + ", paymentDateTime=" + paymentDateTime + ", amount=" + amount + ", isConfirm="
+				+ isConfirm + ", agreement_Id=" + agreement_Id + "]";
 	}
 
 }

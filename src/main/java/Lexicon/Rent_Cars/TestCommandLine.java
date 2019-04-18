@@ -8,12 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.SocketUtils;
 
 import Lexicon.Rent_Cars.Services.Cars_Services_Dao;
+import Lexicon.Rent_Cars.Services.Payment_Service_Dao;
 import Lexicon.Rent_Cars.entity.Agreement;
 import Lexicon.Rent_Cars.entity.Branches;
 import Lexicon.Rent_Cars.entity.Cars;
 import Lexicon.Rent_Cars.entity.Client;
 import Lexicon.Rent_Cars.entity.ContactsInfo;
 import Lexicon.Rent_Cars.entity.MoreDescriptions;
+import Lexicon.Rent_Cars.entity.Payment;
 import Lexicon.Rent_Cars.entity.RentalPrices;
 import Lexicon.Rent_Cars.entity.SalesPerson;
 import Lexicon.Rent_Cars.repository.AgreementRepo;
@@ -22,6 +24,7 @@ import Lexicon.Rent_Cars.repository.CarsRepo;
 import Lexicon.Rent_Cars.repository.ClientsRepo;
 import Lexicon.Rent_Cars.repository.ContactInfoRepo;
 import Lexicon.Rent_Cars.repository.MoreDescriptionsRepo;
+import Lexicon.Rent_Cars.repository.PaymenRepo;
 import Lexicon.Rent_Cars.repository.RentalPricesRepo;
 import Lexicon.Rent_Cars.repository.SalesPersonRepo;
 
@@ -38,7 +41,7 @@ public class TestCommandLine implements CommandLineRunner {
 	 private MoreDescriptionsRepo test_Mor_repo;
 	 private RentalPricesRepo test_rentPrices_repo;
 	 private SalesPersonRepo test_sales_repo;
-	 
+	 private PaymenRepo test_payment_repo;
 	 
 		private Agreement Test_agreement;
 		private Branches Test_branch;
@@ -49,6 +52,7 @@ public class TestCommandLine implements CommandLineRunner {
 		private MoreDescriptions Test_Mor;
 		private RentalPrices Test_Rent_Prices;
 		private SalesPerson Test_Sales_Person;
+		private Payment Test_Payment;
 		
 		
 		Cars_Services_Dao impl;
@@ -57,7 +61,7 @@ public class TestCommandLine implements CommandLineRunner {
 	
 	public TestCommandLine(CarsRepo test_cars_repo, AgreementRepo test_agreement_repo, BranchesRepo test_branch_repo,
 			ClientsRepo test_client_repo, ContactInfoRepo test_cont_repo, MoreDescriptionsRepo test_Mor_repo,
-			RentalPricesRepo test_rentPrices_repo, SalesPersonRepo test_sales_repo) {
+			RentalPricesRepo test_rentPrices_repo, SalesPersonRepo test_sales_repo ,PaymenRepo test_payment_repo) {
 		super();
 		this.test_cars_repo = test_cars_repo;
 		this.test_agreement_repo = test_agreement_repo;
@@ -67,6 +71,7 @@ public class TestCommandLine implements CommandLineRunner {
 		this.test_Mor_repo = test_Mor_repo;
 		this.test_rentPrices_repo = test_rentPrices_repo;
 		this.test_sales_repo = test_sales_repo;
+		this.test_payment_repo=test_payment_repo;
 	}
 
 	@Override
@@ -81,6 +86,7 @@ public class TestCommandLine implements CommandLineRunner {
 		RentalPrices Price1=new RentalPrices(230);
 		RentalPrices Price2=new RentalPrices(160);
 		SalesPerson Sales1=new SalesPerson("YAMEN", "Ayou",cont2);
+		Payment payment = new Payment(5600, 1);
 
 		Cars car1 = new Cars("Opel",Price1,Mor1);
 		Cars car2=new Cars("Volvo",Price2,Mor1);
@@ -107,6 +113,8 @@ public class TestCommandLine implements CommandLineRunner {
 		branchCars.add(car1);
 		branchCars.add(car2);
 		Test_branch.setCars_Lists(branchCars);
+		test_payment_repo.save(payment);
+		
 		
 		
 		List<SalesPerson> SalesPerson_List=new ArrayList<>();

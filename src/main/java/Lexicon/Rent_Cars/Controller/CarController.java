@@ -113,7 +113,7 @@ public class CarController {
 	}
 
 	@GetMapping("/allCars/{id}")
-	public ResponseEntity<Cars> carById(@PathVariable int id) {
+	public ResponseEntity<Cars> car_ById(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(car_Service.findById_Car(id));
 		} catch (IllegalArgumentException e) {
@@ -122,7 +122,7 @@ public class CarController {
 	}
 
 	@GetMapping("/allMoreDes/{id}")
-	public ResponseEntity<MoreDescriptions> mor_Des_By_Id(@PathVariable int id) {
+	public ResponseEntity<MoreDescriptions> des_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(car_Service.findById_moreDes(id));
 		} catch (IllegalArgumentException e) {
@@ -131,7 +131,7 @@ public class CarController {
 	}
 
 	@GetMapping("/allPrices/{id}")
-	public ResponseEntity<RentalPrices> mor_Prices_By_Id(@PathVariable int id) {
+	public ResponseEntity<RentalPrices> prices_By_Id(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(car_Service.findById_rentalPrice(id));
 		} catch (IllegalArgumentException e) {

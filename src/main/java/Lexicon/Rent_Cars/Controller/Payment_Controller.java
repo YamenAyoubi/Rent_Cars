@@ -11,50 +11,51 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import Lexicon.Rent_Cars.Services.Agreement_Services_Dao;
-import Lexicon.Rent_Cars.entity.Agreement;
+import Lexicon.Rent_Cars.Services.Payment_Service_Dao;
+import Lexicon.Rent_Cars.entity.Payment;
 
 @RestController
 @RequestMapping("/myapp/api")
-public class AgreementController {
+public class Payment_Controller {
 
-	private Agreement_Services_Dao agreementService;
+	private Payment_Service_Dao payment_Service;
 
 	@Autowired
-	public AgreementController(Agreement_Services_Dao agreementService) {
+	public Payment_Controller(Payment_Service_Dao payment_Service) {
 		super();
-		this.agreementService = agreementService;
+		this.payment_Service = payment_Service;
 	}
+	
+	@GetMapping("/allPayments")
+	public ResponseEntity<List<Payment>> getAllPayments() {
 
-	@GetMapping("/allagreements")
-	public ResponseEntity<List<Agreement>> get_agreements() {
+		List<Payment> payments = payment_Service.findAllPayment();
 
-		List<Agreement> agreements = agreementService.findAll_agreement();
-
-		if (agreements.isEmpty()) {
+		if (payments.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		} else {
-			return ResponseEntity.ok(agreements);
+			return ResponseEntity.ok(payments);
 		}
 	}
 
-	@PostMapping("/CreatAgreement")
-	public ResponseEntity<Agreement> create_Agreement(@RequestBody Agreement newAgreement) {
-		if (newAgreement == null) {
+	@PostMapping("/CreatPayment")
+	public ResponseEntity<Payment> createPayment(@RequestBody Payment newPayment) {
+		if (newPayment == null) {
 			return ResponseEntity.badRequest().build();
 		}
 
-		Agreement saved = agreementService.save_Agreement(newAgreement);
+		Payment saved = payment_Service.save_Payment(newPayment);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(saved);
 	}
 
-	@GetMapping("/allagreements/{id}")
-	public ResponseEntity<Agreement> agreement_By_Id(@PathVariable int id) {
+	@GetMapping("/allPayments/{id}")
+	public ResponseEntity<Payment> Payment_By_Id(@PathVariable int id) {
 		try {
-			return ResponseEntity.ok(agreementService.findById_agreement(id));
+			return ResponseEntity.ok(payment_Service.findPaymentByID(id));
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
 }
